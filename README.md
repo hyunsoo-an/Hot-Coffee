@@ -100,21 +100,12 @@ Copied from
   </details>
 	
 
-- Edit the new file in the new `migrations` folder so it will add (and drop) a table called `todos`
-  <details style="padding-left: 2em">
-    <summary>More about the <code>todos</code> table</summary>
-
-  It should have the following fields:
-  _ `id` (auto incrementing)
-  _ `task`: string
-
-  The documentation for [`dropTable`](https://knexjs.org/guide/schema-builder.html#droptable) might be helpful.
-  </details>
+- Edit the new file in the new `migrations` folder so it will add (and drop) your table. The documentation for [`dropTable`](https://knexjs.org/guide/schema-builder.html#droptable) might be helpful.
 
 ### 2. Seeds
 
-- Use `npm run knex seed:make [Things]` to create a seed file
-- Edit the new file in the new `seeds` folder so it will add new tasks to the `todos` table
+- Use `npm run knex seed:make [Items]` to create a seed file
+- Edit the new file in the new `seeds` folder so it will add items to your table
   <details style="padding-left: 2em">
     <summary>Tip</summary>
   First, we need to convert it to an ESM module by changing from this:
