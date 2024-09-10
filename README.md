@@ -64,10 +64,11 @@ Additional components should be placed in `client/components`.
 | Env file         | Dotenv           | `npm install dotenv --save` |
 
 ## Setting up the database
+Copied from 
 
 ### 1. The first migration
 
-- Use `npm run knex migrate:make todos` to create a migration file
+- Use `npm run knex migrate:make [Table Name]` to create a migration file
 - Convert the migration to an ESM module
   <details style="padding-left: 2em">
     <summary>How to convert your migration to a module</summary>
@@ -110,11 +111,9 @@ Additional components should be placed in `client/components`.
   The documentation for [`dropTable`](https://knexjs.org/guide/schema-builder.html#droptable) might be helpful.
   </details>
 
-- Use `npm run knex migrate:latest` to apply the changes to the database
-
 ### 2. Seeds
 
-- Use `npm run knex seed:make test-tasks` to create a seed file
+- Use `npm run knex seed:make [Things]` to create a seed file
 - Edit the new file in the new `seeds` folder so it will add new tasks to the `todos` table
   <details style="padding-left: 2em">
     <summary>Tip</summary>
@@ -133,15 +132,9 @@ Additional components should be placed in `client/components`.
   The documentation for [`del`](https://knexjs.org/guide/query-builder.html#del-delete) and [`insert`](https://knexjs.org/guide/query-builder.html#insert) might be helpful.
   </details>
 
-- Run `npm run knex seed:run` to add the new data to the database
-
 ### 3. Viewing data in the database
 
-- Choose and set up a way to view the contents of the database
-<details style="padding-left: 2em">
-  <summary>More about viewing data</summary>
-  
-  There are a number of different options for peeking into your SQLite database. We recommend you use the SQLite Viewer VS Code extension. Alternatively, you can install a desktop application, such as the [DB Browser for SQLite](https://sqlitebrowser.org/) (installed on the campus computers) or [DBeaver](https://dbeaver.io) (great for all of the common relational databases - not just SQLite). Or you can use an online tool such as this [SQLite Viewer](https://inloop.github.io/sqlite-viewer/).
-</details>
+- Use `npm run knex migrate:latest` to apply the changes to the database
+- Run `npm run knex seed:run` to add the new data to the database
 
 ---
