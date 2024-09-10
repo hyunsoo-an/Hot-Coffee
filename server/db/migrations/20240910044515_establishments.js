@@ -2,12 +2,12 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-export const up = function (knex) {
+export function up(knex) {
   return knex.schema.createTable('establishments', (table) => {
     table.increments('id').primary()
     table.string('name')
-    table.number('longitude')
-    table.number('latitude')
+    table.float('longitude')
+    table.float('latitude')
     table.string('image')
     table.string('google_id')
     table.string('directions_url')
@@ -21,6 +21,6 @@ export const up = function (knex) {
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-export const down = function (knex) {
+export function down(knex) {
   return knex.schema.dropTable('establishments')
 }

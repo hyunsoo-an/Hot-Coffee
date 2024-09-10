@@ -2,13 +2,13 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-export const up = function (knex) {
+export function up(knex) {
   return knex.schema.createTable('ratings', (table) => {
     table.increments('id').primary()
-    table.number('location_id').references('establishments.id')
+    table.integer('location_id').references('establishments.id')
     table.boolean('rating')
     table.timestamp('timestamp')
-    table.number('ip_address')
+    table.string('ip_address')
   })
 }
 
@@ -16,6 +16,6 @@ export const up = function (knex) {
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-export const down = function (knex) {
+export function down(knex) {
   return knex.schema.dropTable('ratings')
 }
