@@ -69,5 +69,35 @@
 }
 
 body {
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
   min-height: 100svh;
+  background: #f8f8f8;
+  align-items: center;
+  padding: 1rem;
+}
+
+.page {
+  flex-grow: 1;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  position: relative;
+  width: 430px;
+  max-height: 932px;
+  background: #fff;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+main.content {
+  grid-row: 1 / -1;
+  overflow-y: auto;
+}
+
+header.header {
+  grid-row: -1;
 }
