@@ -5,7 +5,7 @@
 export function up(knex) {
   return knex.schema.createTable('ratings', (table) => {
     table.increments('id').primary()
-    table.integer('location_id').references('establishments.id')
+    table.integer('location_id').references('cafes.id')
     table.boolean('rating')
     table.timestamp('timestamp')
     table.string('ip_address')

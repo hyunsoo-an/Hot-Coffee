@@ -1,4 +1,4 @@
-export interface Establishment {
+export interface Cafe {
   id: number
   name: string
   longitude: number

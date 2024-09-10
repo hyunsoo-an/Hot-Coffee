@@ -5,5 +5,5 @@
 export async function seed(knex) {
   // Deletes ALL existing entries
   await knex('ratings').del()
-  await knex('establishments').del()
+  await knex('cafes').del()
 }
