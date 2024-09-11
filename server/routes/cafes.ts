@@ -13,4 +13,15 @@ router.get('/', async (req, res) => {
   }
 })
 
+// GET /api/v1/cafes/:id
+router.get('/:id', async (req, res) => {
+  const id = Number(req.params.id)
+  try {
+    const cafe = await db.getCafeById(id)
+    res.json(cafe)
+  } catch (error) {
+    res.sendStatus(500)
+  }
+})
+
 export default router
