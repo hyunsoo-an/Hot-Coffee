@@ -37,3 +37,21 @@ export function getCafeById(id: number): Promise<Cafe[]> {
       'city',
     )
 }
+
+// Getting cafes by suburb
+export function getCafesBySuburb(suburb: string): Promise<Cafe[]> {
+  return db('cafes')
+    .select(
+      'id',
+      'name',
+      'longitude',
+      'latitude',
+      'image',
+      'google_id as googleId',
+      'directions_url as directionsUrl',
+      'street_address as streetAddress',
+      'suburb',
+      'city',
+    )
+    .where({ suburb })
+}

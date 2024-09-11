@@ -13,6 +13,18 @@ router.get('/', async (req, res) => {
   }
 })
 
+// Get /api/v1/cafes/:suburb
+router.get('/suburb/:suburb', async (req, res) => {
+  const suburb = String(req.params.suburb)
+  try {
+    console.log(suburb)
+    const cafes = await db.getCafesBySuburb(suburb)
+    res.json(cafes)
+  } catch (error) {
+    res.sendStatus(500)
+  }
+})
+
 // GET /api/v1/cafes/:id
 router.get('/:id', async (req, res) => {
   const id = Number(req.params.id)
