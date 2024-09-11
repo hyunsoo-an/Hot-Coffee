@@ -2,12 +2,14 @@ import express from 'express'
 import * as Path from 'node:path'
 
 import cafesRoutes from './routes/cafes'
+import ratingsRoutes from './routes/ratings'
 
 const server = express()
 
 server.use(express.json())
 
 server.use('/api/v1/cafes', cafesRoutes)
+server.use('/api/v1/ratings', ratingsRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
