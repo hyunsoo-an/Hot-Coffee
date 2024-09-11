@@ -1,4 +1,4 @@
-export interface distance {
+export interface GoogleDistanceAPIResult {
   destination_addresses: string[]
   origin_addresses: string[]
   rows: Row[]

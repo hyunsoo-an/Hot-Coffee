@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
         units: 'metric',
         key: process.env.GOOGLE_API_KEY,
       })
-    res.json(response.body)
+    res.json(response.body.rows[0].elements)
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'An error occurred' })
