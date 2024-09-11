@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* --- Shadcn theme variables --- */
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -68,6 +70,16 @@
   }
 }
 
+/* --- Hot Coffee variables --- */
+
+:root {
+  --spacing-site: 1rem;
+  --gap-x: 1.5rem; /* between columns */
+  --gap-y: 1rem; /* between rows */
+}
+
+/* --- Site structure --- */
+
 body {
 }
 
@@ -75,7 +87,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100svh;
-  background: #f8f8f8;
+  background: hsl(var(--muted));
   align-items: center;
   padding: 1rem;
 }
@@ -83,21 +95,60 @@ body {
 .page {
   flex-grow: 1;
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr auto auto;
+  grid-template-columns: 0 repeat(6, 1fr) 0;
+  column-gap: var(--gap-x);
   position: relative;
   width: 430px;
   max-height: 932px;
-  background: #fff;
+  background: hsl(var(--background));
   border-radius: 1.5rem;
-  overflow: hidden;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: hsl(var(--border)) 0px 2px 8px 0px;
 }
 
 main.content {
   grid-row: 1 / -1;
-  overflow-y: auto;
 }
 
 header.header {
   grid-row: -1;
+}
+
+footer.footer {
+  display: none;
+}
+
+/* Push page-grid down to main sections */
+
+.page > * {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+}
+
+.page > * > * {
+  grid-column: 1 / -1;
+}
+
+main.content > section {
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+main.content > section > * {
+  grid-column: 2 / -2;
+}
+
+main.content > *:first-child {
+  padding-top: calc(var(--spacing-site) * 2);
+}
+
+/* --- Navbar --- */
+
+.navbar {
+  display: grid;
+  grid-auto-flow: column;
+  padding: var(--spacing-site);
+  justify-items: center;
+  align-items: center;
 }
