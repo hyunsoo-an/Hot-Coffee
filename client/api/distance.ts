@@ -1,11 +1,11 @@
-import { GoogleDistanceAPIResult } from 'models/GoogleDistanceAPIResult'
+import { Element } from 'models/GoogleDistanceAPIResult'
 import request from 'superagent'
 import { coordinates } from '../../models/coordinates'
 
 export async function getDistance(
   origins: coordinates,
   destinations: coordinates[],
-): Promise<GoogleDistanceAPIResult | null> {
+): Promise<Element[] | null> {
   try {
     const response = await request.get('/api/v1/distance').query({
       origins: `${origins.lat},${origins.long}`,
