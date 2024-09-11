@@ -10,12 +10,12 @@ export interface Row {
 }
 
 export interface Element {
-  distance: Distance
-  duration: Distance
+  distance: ElementResult
+  duration: ElementResult
   status: string
 }
 
-export interface Distance {
+export interface ElementResult {
   text: string
   value: number
 }
