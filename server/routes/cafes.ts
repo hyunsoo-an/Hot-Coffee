@@ -4,21 +4,13 @@ import * as db from '../db/functions/cafes'
 const router = express.Router()
 
 // Get /api/v1/cafes
+// Get /api/v1/cafes?suburb=Lyall Bay
 router.get('/', async (req, res) => {
   try {
-    const cafes = await db.getAllCafes()
-    res.json(cafes)
-  } catch (error) {
-    res.sendStatus(500)
-  }
-})
+    const suburbName = req.query.suburb
+    // suburbName = typeof suburbName === 'string' ? suburbName : undefined
 
-// Get /api/v1/cafes/:suburb
-router.get('/suburb/:suburb', async (req, res) => {
-  const suburb = String(req.params.suburb)
-  try {
-    console.log(suburb)
-    const cafes = await db.getCafesBySuburb(suburb)
+    const cafes = await db.getAllCafes(suburbName)
     res.json(cafes)
   } catch (error) {
     res.sendStatus(500)

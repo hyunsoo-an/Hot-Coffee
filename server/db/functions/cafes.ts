@@ -3,22 +3,6 @@ import { Cafe } from '../../../models/cafes'
 
 const db = connection
 
-// Getting all cafes
-export function getAllCafes(): Promise<Cafe[]> {
-  return db('cafes').select(
-    'id',
-    'name',
-    'longitude',
-    'latitude',
-    'image',
-    'google_id as googleId',
-    'directions_url as directionsUrl',
-    'street_address as streetAddress',
-    'suburb',
-    'city',
-  )
-}
-
 // Getting each cafe id
 export function getCafeById(id: number): Promise<Cafe[]> {
   return db('cafes')
@@ -38,20 +22,25 @@ export function getCafeById(id: number): Promise<Cafe[]> {
     )
 }
 
-// Getting cafes by suburb
-export function getCafesBySuburb(suburb: string): Promise<Cafe[]> {
-  return db('cafes')
-    .select(
-      'id',
-      'name',
-      'longitude',
-      'latitude',
-      'image',
-      'google_id as googleId',
-      'directions_url as directionsUrl',
-      'street_address as streetAddress',
-      'suburb',
-      'city',
-    )
-    .where({ suburb })
+// Getting all cafes and by suburb(optional)
+export function getAllCafes(suburb?: string | undefined): Promise<Cafe[]> {
+  const cafes = db('cafes').select(
+    'id',
+    'name',
+    'longitude',
+    'latitude',
+    'image',
+    'google_id as googleId',
+    'directions_url as directionsUrl',
+    'street_address as streetAddress',
+    'suburb',
+    'city',
+  )
+
+  // Option to filter the cafes by suburb if the suburb has been given passed in
+  if (suburb) {
+    cafes.where({ suburb })
+  }
+
+  return cafes
 }
