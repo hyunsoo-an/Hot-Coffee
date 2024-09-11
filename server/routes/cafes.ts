@@ -7,9 +7,8 @@ const router = express.Router()
 // Get /api/v1/cafes?suburb=Lyall Bay
 router.get('/', async (req, res) => {
   try {
-    const suburbName = req.query.suburb
-    // suburbName = typeof suburbName === 'string' ? suburbName : undefined
-
+    const suburbName =
+      typeof req.query.suburb === 'string' ? req.query.suburb : undefined
     const cafes = await db.getAllCafes(suburbName)
     res.json(cafes)
   } catch (error) {
