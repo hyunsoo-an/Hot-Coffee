@@ -1,9 +1,9 @@
 import connection from '../index'
-import { Rating } from '../../../models/ratings'
+import { RatingData } from '../../../models/ratings'
 
 const db = connection
 
 // Adding rating
-export function addRating(newRate: Rating) {
+export function addRating(newRate: RatingData) {
   return db('ratings').insert(newRate)
 }
