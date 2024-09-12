@@ -1,7 +1,10 @@
-export interface Rating {
+export interface Rating extends RatingData {
   id: number
-  location_id: number
+}
+
+export interface RatingData {
+  locationId: number
   rating: boolean
   timestamp: Date
-  ip_address: string
+  ipAddress: string
 }

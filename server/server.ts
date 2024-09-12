@@ -1,18 +1,17 @@
-import * as Path from 'node:path'
 import express from 'express'
-import cors, { CorsOptions } from 'cors'
+import * as Path from 'node:path'
+
+import cafesRoutes from './routes/cafes'
+import ratingsRoutes from './routes/ratings'
+import distanceMatrix from './routes/distanceMatrix'
 
 const server = express()
 
-server.get('/api/v1/greeting', (req, res) => {
-  const greetings = ['hola', 'hi', 'hello', 'howdy']
-  const index = Math.floor(Math.random() * greetings.length)
-  console.log(index)
-  res.json({ greeting: greetings[index] })
-})
-
 server.use(express.json())
-server.use(cors('*' as CorsOptions))
+
+server.use('/api/v1/distance', distanceMatrix)
+server.use('/api/v1/cafes', cafesRoutes)
+server.use('/api/v1/ratings', ratingsRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
