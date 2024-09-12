@@ -10,6 +10,12 @@ router.get('/', async (req, res) => {
     const suburbName =
       typeof req.query.suburb === 'string' ? req.query.suburb : undefined
     const cafes = await db.getAllCafes(suburbName)
+
+    cafes.map(
+      (cafe) =>
+        cafe.avgRating && (cafe.avgRating = ratingOutOfTen(cafe.avgRating)),
+    )
+
     res.json(cafes)
   } catch (error) {
     res.sendStatus(500)
@@ -21,6 +27,9 @@ router.get('/:id', async (req, res) => {
   const id = Number(req.params.id)
   try {
     const cafe = await db.getCafeById(id)
+
+    cafe.avgRating && (cafe.avgRating = ratingOutOfTen(cafe.avgRating))
+
     res.json(cafe)
   } catch (error) {
     res.sendStatus(500)
@@ -28,3 +37,8 @@ router.get('/:id', async (req, res) => {
 })
 
 export default router
+
+// rounding rating function
+function ratingOutOfTen(ratingDecimal: number) {
+  return Math.round(ratingDecimal * 100) / 10
+}
