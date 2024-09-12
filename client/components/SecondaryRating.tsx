@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { deleteRating } from '../api/deleterating'
+import { deleteRating } from '../api/deleteRating'
 import { useParams, useNavigate } from 'react-router-dom'
 
 interface RouteParams extends Record<string, string | undefined> {
@@ -21,7 +21,7 @@ export default function SecondaryRating() {
 
   if (isUndone) {
     return (
-      <div className="gap-dy grid auto-rows-min content-center justify-items-center">
+      <div className="grid auto-rows-min content-center justify-items-center gap-dy">
         <h2>Rating undone</h2>
         <p>returning home</p>
       </div>
@@ -29,7 +29,7 @@ export default function SecondaryRating() {
   }
 
   return (
-    <div className="gap-dy grid auto-rows-min content-center justify-items-center">
+    <div className="grid auto-rows-min content-center justify-items-center gap-dy">
       <h1>Thanks for your rating!</h1>
       <p>Feedback like yours helps more people avoid bad coffee.</p>
       <button

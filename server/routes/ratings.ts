@@ -18,7 +18,6 @@ router.post('/', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   const id = Number(req.params.id)
-  console.log('id on the route', id)
   try {
     const deleted = await db.deleteRating(id)
     if (deleted) {
