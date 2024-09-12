@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom'
 
 export default function CafeListItem({ cafe }: { cafe: Cafe }) {
   return (
-    <div className="cafe-list-item">
-      <Link to={`/cafes/${cafe.id}`}>
-        <h3>{cafe.name}</h3>
-        <p>{cafe.suburb}</p>
-        <p>{cafe.avgRating}</p>
-      </Link>
-    </div>
+    <Link
+      to={`/cafes/${cafe.id}`}
+      className="grid auto-rows-max grid-cols-[1fr_auto]"
+    >
+      <h2 className="font-semibold">{cafe.name}</h2>
+      <p className="text-sm text-muted-foreground">{cafe.suburb}</p>
+      <p className="col-start-2 row-span-2 row-start-1 text-lg font-black">
+        {cafe.avgRating}
+      </p>
+    </Link>
   )
 }
