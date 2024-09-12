@@ -9,4 +9,5 @@ export interface Cafe {
   street_address: string
   suburb: string
   city: string
+  avgRating?: number
 }

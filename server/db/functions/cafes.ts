@@ -4,22 +4,69 @@ import { Cafe } from '../../../models/cafes'
 const db = connection
 
 // Getting each cafe id
-export function getCafeById(id: number): Promise<Cafe[]> {
+// export function getCafeById(id: number): Promise<Cafe[]> {
+//   return db('cafes')
+//     .where({ id })
+//     .first()
+//     .select(
+//       'id',
+//       'name',
+//       'longitude',
+//       'latitude',
+//       'image',
+//       'google_id as googleId',
+//       'directions_url as directionsUrl',
+//       'street_address as streetAddress',
+//       'suburb',
+//       'city',
+//     )
+// }
+
+// export function getCafeById(id: number): Promise<Cafe[]> {
+//   return (
+//     db('cafes')
+//       .where({ id })
+//       .join('ratings', 'ratings.location_id', 'cafes.id')
+//       .avg('ratings.rating as avgRating')
+//       .select(
+//         'id',
+//         'name',
+//         'longitude',
+//         'latitude',
+//         'image',
+//         'google_id as googleId',
+//         'directions_url as directionsUrl',
+//         'street_address as streetAddress',
+//         'suburb',
+//         'city',
+//         'avgRating',
+//       )
+//       .first()
+//   )
+// }
+
+// Getting cafe by id
+// Getting average rating
+export function getCafeById(id: number): Promise<Cafe> {
   return db('cafes')
-    .where({ id })
-    .first()
+    .where({ 'cafes.id': id })
     .select(
-      'id',
-      'name',
-      'longitude',
-      'latitude',
-      'image',
-      'google_id as googleId',
-      'directions_url as directionsUrl',
-      'street_address as streetAddress',
-      'suburb',
-      'city',
+      'cafes.id',
+      'cafes.name',
+      'cafes.longitude',
+      'cafes.latitude',
+      'cafes.image',
+      'cafes.google_id as googleId',
+      'cafes.directions_url as directionsUrl',
+      'cafes.street_address as streetAddress',
+      'cafes.suburb',
+      'cafes.city',
+      db('ratings')
+        .where('ratings.location_id', '=', id)
+        .avg('ratings.rating')
+        .as('avgRating'),
     )
+    .first()
 }
 
 // Getting all cafes and by suburb(optional)
