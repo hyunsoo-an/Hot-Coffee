@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import * as API from '../api/cafe'
+import * as API from '../api/cafeApi'
 
 export function useCafeById(id: string) {
   const query = useQuery({
@@ -9,4 +9,11 @@ export function useCafeById(id: string) {
   return {
     ...query,
   }
+}
+export function useCafe() {
+  const query = useQuery({
+    queryKey: ['cafes'],
+    queryFn: () => API.getCafes(),
+  })
+  return query
 }
