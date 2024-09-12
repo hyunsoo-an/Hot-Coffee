@@ -1,22 +1,19 @@
-import { useState, useEffect } from 'react'
-import { getUserIP } from '@/api/axios'
+import { useQuery } from '@tanstack/react-query'
+
+async function fetchIP() {
+  const response = await fetch('/api/ip')
+  if (!response.ok) {
+    throw new Error('Error fetching IP address')
+  }
+  const data = await response.json()
+  return data.ip
+}
 
 export default function useUserIP() {
-  const [ip, setIP] = useState<string>('')
-  const [error, setError] = useState<string | null>(null)
+  const { data: ip, error } = useQuery({
+    queryKey: ['userIP'],
+    queryFn: fetchIP,
+  })
 
-  useEffect(() => {
-    const fetchIP = async () => {
-      try {
-        const ipAddress = await getUserIP()
-        setIP(ipAddress)
-      } catch (error) {
-        setError('Error fetching IP address')
-      }
-    }
-
-    fetchIP()
-  }, [])
-
-  return { ip, error }
+  return { ip, error: error ? error.message : null }
 }
