@@ -7,16 +7,16 @@ export default function DisplayMap() {
   }
 
   const center = {
-    lat: -3.745,
-    lng: -38.523,
+    lat: -41.296881158626114,
+    lng: 174.77414413921622,
   }
   const markerLocation = {
-    lat: -36.830291,
-    lng: 174.745348,
+    lat: -41.296881158626114,
+    lng: 174.77414413921622,
   }
   return (
     <LoadScript googleMapsApiKey={API_HOST}>
-      <GoogleMap mapContainerStyle={mapStyles} zoom={13} center={center}>
+      <GoogleMap mapContainerStyle={mapStyles} zoom={18} center={center}>
         <Marker position={markerLocation} />
       </GoogleMap>
     </LoadScript>
