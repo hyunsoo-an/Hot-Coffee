@@ -12,3 +12,8 @@ export function addRating(newRate: RatingData) {
     ip_address: newRate.ipAddress,
   })
 }
+
+// delete rating
+export function deleteRating(id: number) {
+  return db('ratings').where({ id }).del()
+}
