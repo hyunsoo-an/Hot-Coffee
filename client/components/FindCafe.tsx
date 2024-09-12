@@ -16,5 +16,12 @@ export default function FindCafe() {
   isError && (outlet = <p>Error Loading Cafes</p>)
   isSuccess && (outlet = <CafeList cafes={data} />)
 
-  return <section className="section">{outlet}</section>
+  return (
+    <section className="section">
+      <div className="content-wrapper">
+        <h1>Find Wellington Cafes</h1>
+        {outlet}
+      </div>
+    </section>
+  )
 }
