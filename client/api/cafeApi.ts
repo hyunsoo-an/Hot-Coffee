@@ -10,3 +10,13 @@ export async function getCafeById(cafeId: string): Promise<Cafe> {
     throw error
   }
 }
+
+export async function getCafes(): Promise<Cafe[]> {
+  try {
+    const response = await request.get('/api/v1/cafes')
+    return response.body
+  } catch (error) {
+    console.error('Error occurred while fetching all cafes', error)
+    throw error
+  }
+}
