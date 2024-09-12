@@ -133,6 +133,7 @@ footer.footer {
 main.content > section {
   display: grid;
   grid-template-columns: subgrid;
+  grid-auto-rows: max-content;
 }
 
 main.content > section > * {
