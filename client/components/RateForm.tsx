@@ -7,41 +7,44 @@ import { RatingData } from 'models/ratings'
 import { useNavigate } from 'react-router-dom'
 
 export default function RateForm() {
-  const [, setSelectedValue] = useState<boolean | null>(null)
-  const [clickedValue, setClickedValue] = useState<boolean | null>(null)
+  const [, setSelectedCafe] = useState<boolean | null>(null)
+  const [selectedRating, setSelectedRating] = useState<boolean | null>(null)
   const [isWaiting, setIsWaiting] = useState(false)
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState('')
   const navigate = useNavigate()
 
   const handleSelection = (value: boolean) => {
-    setClickedValue(value)
+    setSelectedRating(value)
     setIsWaiting(true)
     setTimeout(() => {
-      setSelectedValue(value)
+      setSelectedCafe(value)
       setIsWaiting(false)
     }, 500)
   }
 
-  const handleCafeSelect = async (selectedValue: string) => {
-    setValue(selectedValue)
-    if (clickedValue !== null) {
-      await addNewRating(clickedValue, Number(selectedValue))
+  const handleCafeSelect = async (selectedCafe: string) => {
+    setValue(selectedCafe)
+    if (selectedRating !== null) {
+      await addNewRating(selectedRating, Number(selectedCafe))
     }
   }
 
-  const addNewRating = async (clickedValue: boolean, selectedValue: number) => {
+  const addNewRating = async (
+    selectedRating: boolean,
+    selectedCafe: number,
+  ) => {
     try {
       const response = await addRating({
-        locationId: selectedValue,
-        rating: clickedValue,
+        locationId: selectedCafe,
+        rating: selectedRating,
         timestamp: new Date(),
         ipAddress: '11.22.33.44.55.66', // to be updated once we have the option to dynamically grab user IP address
       } as RatingData)
 
       if (response == 200) {
         setTimeout(() => {
-          navigate(`/rating/${selectedValue}`)
+          navigate(`/rating/${selectedCafe}`)
         }, 330)
       } else {
         console.error('Failed to add rating. Status code:', response)
@@ -55,15 +58,15 @@ export default function RateForm() {
     <form className="gap-dy grid auto-rows-min content-center justify-items-center">
       <h1>How was your coffee?</h1>
       <RateButtons
-        clickedValue={clickedValue}
+        selectedRating={selectedRating}
         isWaiting={isWaiting}
         onSelection={handleSelection}
       />
-      {clickedValue == null ? (
+      {selectedRating == null ? (
         ' '
       ) : (
         <SearchCafe
-          coffeeRating={clickedValue}
+          coffeeRating={selectedRating}
           open={open}
           value={value}
           onOpenChange={setOpen}
