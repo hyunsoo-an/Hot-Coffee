@@ -71,7 +71,6 @@
 }
 
 /* --- Hot Coffee variables --- */
-
 :root {
   --spacing-site: 1rem;
   --gap-x: 1.5rem; /* between columns */
@@ -87,9 +86,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100svh;
-  background: hsl(var(--muted));
-  align-items: center;
-  padding: 1rem;
 }
 
 .page {
@@ -99,11 +95,6 @@ body {
   grid-template-columns: 0 repeat(6, 1fr) 0;
   column-gap: var(--gap-x);
   position: relative;
-  width: 430px;
-  max-height: 932px;
-  background: hsl(var(--background));
-  border-radius: 1.5rem;
-  box-shadow: hsl(var(--border)) 0px 2px 8px 0px;
 }
 
 main.content {
@@ -141,6 +132,12 @@ main.content > section > * {
 
 main.content > *:first-child {
   padding-top: calc(var(--spacing-site) * 2);
+}
+
+:where(.content-wrapper) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-y);
 }
 
 /* --- Navbar --- */
