@@ -4,9 +4,9 @@ export interface Cafe {
   longitude: number
   latitude: number
   image: string
-  google_id: string
-  directions_url: string
-  street_address: string
+  googleId: string
+  directionsUrl: string
+  streetAddress: string
   suburb: string
   city: string
   avgRating?: number

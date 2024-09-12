@@ -10,6 +10,12 @@ router.get('/', async (req, res) => {
     const suburbName =
       typeof req.query.suburb === 'string' ? req.query.suburb : undefined
     const cafes = await db.getAllCafes(suburbName)
+
+    cafes.map(
+      (cafe) =>
+        cafe.avgRating && (cafe.avgRating = ratingOutOfTen(cafe.avgRating)),
+    )
+
     res.json(cafes)
   } catch (error) {
     res.sendStatus(500)

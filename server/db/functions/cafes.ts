@@ -28,27 +28,28 @@ export function getCafeById(id: number): Promise<Cafe> {
 }
 
 // Getting all cafes and by suburb(optional)
-export function getAllCafes(suburb?: string | undefined): Promise<Cafe[]> {
-  const cafes = db('cafes').select(
-    'id',
-    'name',
-    'longitude',
-    'latitude',
-    'image',
-    'google_id as googleId',
-    'directions_url as directionsUrl',
-    'street_address as streetAddress',
-    'suburb',
-    'city',
-    db('ratings')
-      .whereRaw('ratings.location_id = cafes.id')
-      .avg('ratings.rating')
-      .as('avgRating'),
-  )
+export function getAllCafes(suburb?: string | undefined) {
+  const cafes = db('cafes')
+    .leftJoin('ratings', 'cafes.id', 'ratings.location_id')
+    .select(
+      'cafes.id',
+      'cafes.name',
+      'cafes.longitude',
+      'cafes.latitude',
+      'cafes.image',
+      'cafes.google_id as googleId',
+      'cafes.directions_url as directionsUrl',
+      'cafes.street_address as streetAddress',
+      'cafes.suburb',
+      'cafes.city',
+    )
+    .groupBy('cafes.id')
+    .avg('ratings.rating as avgRating')
+    .orderBy('avgRating', 'desc')
 
   // Option to filter the cafes by suburb if the suburb has been given passed in
   if (suburb) {
-    cafes.where({ suburb })
+    cafes.where({ 'cafes.suburb': suburb })
   }
 
   return cafes
