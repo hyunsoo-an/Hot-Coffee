@@ -3,11 +3,13 @@ import * as Path from 'node:path'
 
 import cafesRoutes from './routes/cafes'
 import ratingsRoutes from './routes/ratings'
+import distanceMatrix from './routes/distanceMatrix'
 
 const server = express()
 
 server.use(express.json())
 
+server.use('/api/v1/distance', distanceMatrix)
 server.use('/api/v1/cafes', cafesRoutes)
 server.use('/api/v1/ratings', ratingsRoutes)
 
