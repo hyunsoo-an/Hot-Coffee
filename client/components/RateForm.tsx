@@ -5,6 +5,7 @@ import React from 'react'
 import { useAddRating } from '../hooks/useAddRating'
 import { RatingData } from 'models/ratings'
 import { useNavigate } from 'react-router-dom'
+import { getUserIP } from '../api/getUserIP'
 
 export default function RateForm() {
   const [, setSelectedCafe] = useState<string | null>(null)
@@ -40,7 +41,7 @@ export default function RateForm() {
         locationId: selectedCafe,
         rating: selectedRating,
         timestamp: new Date(),
-        ipAddress: '11.22.33.44.55.66', // to be updated soon
+        ipAddress: String(getUserIP()),
       }
       const newRatingId = await addMutation.mutateAsync(newRating)
 
