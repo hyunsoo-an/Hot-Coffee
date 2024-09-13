@@ -7,8 +7,8 @@ const router = express.Router()
 router.post('/', async (req, res) => {
   const newRate = req.body
   try {
-    await db.addRating(newRate)
-    res.sendStatus(200)
+    const addedRateId = await db.addRating(newRate)
+    res.status(200).json(addedRateId[0])
   } catch (error) {
     res.sendStatus(500)
   }
