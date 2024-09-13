@@ -99,10 +99,17 @@ body {
 
 main.content {
   grid-row: 1 / -1;
+  padding-bottom: 5rem;
 }
 
 header.header {
-  grid-row: -1;
+  position: fixed;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: hsl(var(--background));
+  border-top: solid hsl(var(--border));
 }
 
 footer.footer {
