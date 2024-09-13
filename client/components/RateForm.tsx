@@ -40,11 +40,9 @@ export default function RateForm() {
         locationId: selectedCafe,
         rating: selectedRating,
         timestamp: new Date(),
-        ipAddress: '11.22.33.44.55.66',
+        ipAddress: '11.22.33.44.55.66', // to be updated soon
       }
       const newRatingId = await addMutation.mutateAsync(newRating)
-
-      console.log(newRatingId)
 
       if (newRatingId) {
         setTimeout(() => {

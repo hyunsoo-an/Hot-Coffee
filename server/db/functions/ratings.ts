@@ -12,7 +12,8 @@ export function addRating(newRate: RatingData) {
       timestamp: newRate.timestamp,
       ip_address: newRate.ipAddress,
     })
-    .then(() => db('ratings').select('id').orderBy('id', 'desc').first())
+    .returning('*')
+  // .then(() => db('ratings').select('id').orderBy('id', 'desc').first())
 }
 
 // delete rating

@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
   const newRate = req.body
   try {
     const addedRateId = await db.addRating(newRate)
-    res.status(200).json({ id: addedRateId })
+    res.status(200).json(addedRateId[0])
   } catch (error) {
     res.sendStatus(500)
   }

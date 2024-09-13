@@ -6,7 +6,7 @@ import { RatingData } from '../../models/ratings'
 export async function addRating(newRating: RatingData): Promise<number> {
   try {
     const result = await request.post('/api/v1/ratings').send(newRating)
-    return result.body.id.id
+    return result.body.id
   } catch (error: unknown) {
     console.error('Error occurred adding rating.', error)
     if (typeof error === 'object' && error !== null && 'status' in error) {
