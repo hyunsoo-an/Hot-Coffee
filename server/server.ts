@@ -13,11 +13,6 @@ server.use('/api/v1/distance', distanceMatrix)
 server.use('/api/v1/cafes', cafesRoutes)
 server.use('/api/v1/ratings', ratingsRoutes)
 
-server.get('/api/ip', (req, res) => {
-  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
-  res.json({ ip })
-})
-
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
   server.use('/assets', express.static(Path.resolve('./dist/assets')))
