@@ -1,14 +1,17 @@
 import { useCafeById } from '@/hooks/useCafe'
 import { useParams } from 'react-router-dom'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
-import Loading from '../components/Loading'
 
 export default function CafeProfile() {
   const params = useParams()
   const id = params.cafeId
   const { data: cafe, isError, error, isPending } = useCafeById(String(id))
   if (isPending) {
-    return <Loading />
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    )
   }
   if (isError) {
     return <p>Theres been an error getting cafe,{error.message}</p>

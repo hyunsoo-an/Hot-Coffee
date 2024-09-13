@@ -1,31 +1,44 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffefdb;
-}
-
-.cup {
+.loaderContainer {
   position: relative;
-  width: 220px;
-  height: 180px;
-  border: 8px solid #352a22;
-  border-radius: 10px 10px 60px 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #333333;
 }
 
-.cupHuddle {
+.loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #6f4e37;
+  width: 113px;
+  height: 113px;
+  animation: spin 2s linear infinite;
+  z-index: 2;
+  margin-bottom: 7px;
+}
+
+.image {
   position: absolute;
-  bottom: 20px;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 20px;
-  background: #352a22;
-  border-radius: 10px;
+  width: 160px;
+  height: 160px;
+  z-index: 1;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
