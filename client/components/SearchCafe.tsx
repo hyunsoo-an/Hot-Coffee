@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { useCafe } from '../hooks/UseCafe'
+import { useCafe } from '@/hooks/useCafe'
 
 interface SearchCafeProps {
   coffeeRating: boolean
