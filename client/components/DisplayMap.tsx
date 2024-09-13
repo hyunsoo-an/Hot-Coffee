@@ -37,7 +37,7 @@ export default function DisplayMap() {
         }
       : defaultCenter
   return (
-    <section className="border-accent-4 mx-auto my-8 w-3/4">
+    <div className="border-accent-4 mx-auto my-8 w-3/4">
       <LoadScriptNext
         googleMapsApiKey={API_HOST}
         loadingElement={<div>Loading...</div>}
@@ -46,6 +46,6 @@ export default function DisplayMap() {
           <Marker position={center} />
         </GoogleMap>
       </LoadScriptNext>
-    </section>
+    </div>
   )
 }
