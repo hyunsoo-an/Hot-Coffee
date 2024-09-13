@@ -5,12 +5,15 @@ const db = connection
 
 // Adding rating
 export function addRating(newRate: RatingData) {
-  return db('ratings').insert({
-    location_id: newRate.locationId,
-    rating: newRate.rating,
-    timestamp: newRate.timestamp,
-    ip_address: newRate.ipAddress,
-  })
+  return db('ratings')
+    .insert({
+      location_id: newRate.locationId,
+      rating: newRate.rating,
+      timestamp: newRate.timestamp,
+      ip_address: newRate.ipAddress,
+    })
+    .returning('*')
+  // .then(() => db('ratings').select('id').orderBy('id', 'desc').first())
 }
 
 // delete rating
