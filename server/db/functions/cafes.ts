@@ -54,3 +54,30 @@ export function getAllCafes(suburb?: string | undefined) {
 
   return cafes
 }
+
+// Getting all cafes by alphabetical order
+export function getAllCafesAlpa(suburb?: string | undefined) {
+  const cafes = db('cafes')
+    .leftJoin('ratings', 'cafes.id', 'ratings.location_id')
+    .select(
+      'cafes.id',
+      'cafes.name',
+      'cafes.longitude',
+      'cafes.latitude',
+      'cafes.image',
+      'cafes.google_id as googleId',
+      'cafes.directions_url as directionsUrl',
+      'cafes.street_address as streetAddress',
+      'cafes.suburb',
+      'cafes.city',
+    )
+    .groupBy('cafes.id')
+    .avg('ratings.rating as avgRating')
+    .orderBy('cafes.name', 'asc')
+
+  if (suburb) {
+    cafes.where({ 'cafes.suburb': suburb })
+  }
+
+  return cafes
+}

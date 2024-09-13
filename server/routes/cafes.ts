@@ -22,6 +22,25 @@ router.get('/', async (req, res) => {
   }
 })
 
+// Get /api/v1/cafes (name alph order)
+// Get /api/v1/cafes?suburb=Lyall Bay (name alph order)
+router.get('/', async (req, res) => {
+  try {
+    const suburbName =
+      typeof req.query.suburb === 'string' ? req.query.suburb : undefined
+    const cafes = await db.getAllCafesAlpa(suburbName)
+
+    cafes.map(
+      (cafe) =>
+        cafe.avgRating && (cafe.avgRating = ratingOutOfTen(cafe.avgRating)),
+    )
+
+    res.json(cafes)
+  } catch (error) {
+    res.sendStatus(500)
+  }
+})
+
 // GET /api/v1/cafes/:id
 router.get('/:id', async (req, res) => {
   const id = Number(req.params.id)
