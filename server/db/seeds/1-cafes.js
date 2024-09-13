@@ -7,7 +7,7 @@ export async function seed(knex) {
     {
       id: 1,
       name: 'Maranui Cafe',
-      longitude: -41.33040778976442,
+      longitude: 174.79336851168014,
       latitude: -41.33040778976442,
       image: 'maranui_cafe.jpg',
       google_id: 'example_google_id_1',
