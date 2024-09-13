@@ -16,10 +16,12 @@ export default function LoadingSpinner() {
 
   return (
     <div className={styles.loaderContainer}>
+      <h1 className={styles.title}>Filtering for Coffees</h1>
       {isLoading && <div className={styles.loader}></div>}
       {isLoading && (
         <img src="/loading.png" alt="Loading" className={styles.image} />
       )}
+      <p className={styles.subtitle}>Please allow location access</p>
     </div>
   )
 }

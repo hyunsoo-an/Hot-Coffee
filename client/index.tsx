@@ -23,7 +23,7 @@ const router = createBrowserRouter(
       <Route index element={<RateCoffee />} />
       <Route path="/rating/:ratingId" element={<SecondaryRating />} />
       <Route path="/cafes" element={<FindCafe />} />
-      <Route path="/cafes/loading/loading" element={<Loading />} />
+      <Route path="/cafes/loading" element={<Loading />} />
       <Route path="/cafes/:cafeId" element={<CafeProfile />} />
     </Route>,
   ),
