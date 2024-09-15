@@ -1,11 +1,13 @@
 import { useCafeById } from '@/hooks/useCafe'
 import { useParams } from 'react-router-dom'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
+import DisplayMap from './DisplayMap'
 
 export default function CafeProfile() {
   const params = useParams()
   const id = params.cafeId
   const { data: cafe, isError, error, isPending } = useCafeById(String(id))
+
   if (isPending) {
     return (
       <div>
@@ -13,9 +15,11 @@ export default function CafeProfile() {
       </div>
     )
   }
+
   if (isError) {
-    return <p>Theres been an error getting cafe,{error.message}</p>
+    return <p>Theres been an error getting the cafe: {error.message}</p>
   }
+
   return (
     <section className="section">
       <AspectRatio ratio={16 / 9} className="overflow-hidden">
@@ -34,6 +38,9 @@ export default function CafeProfile() {
           <br />
           {cafe.city}
         </p>
+      </div>
+      <div>
+        <DisplayMap cafe={cafe} />
       </div>
     </section>
   )

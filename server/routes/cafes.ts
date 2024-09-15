@@ -22,8 +22,8 @@ router.get('/', async (req, res) => {
   }
 })
 
-// Get /api/v1/cafes (name alph order)
-// Get /api/v1/cafes?suburb=Lyall Bay (name alph order)
+// Get /api/v1/cafes/alph (name alph order)
+// Get /api/v1/cafes/alph?suburb=Lyall Bay (name alph order)
 router.get('/alph', async (req, res) => {
   try {
     const suburbName =
