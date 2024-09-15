@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { addRating } from '@/api/addRatingApi'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
+import DisplayMap from './DisplayMap'
 import RateButtons from './RateButtons'
 import { RatingData } from 'models/ratings'
 
@@ -83,6 +84,9 @@ export default function CafeProfile() {
             isWaiting={isWaiting}
             onSelection={handleSelection}
           />
+        </div>
+        <div>
+          <DisplayMap cafe={cafe} />
         </div>
       </>
     )
