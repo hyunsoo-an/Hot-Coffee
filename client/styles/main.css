@@ -110,6 +110,7 @@ header.header {
   right: 0;
   background-color: hsl(var(--background));
   border-top: solid hsl(var(--border));
+  z-index: 99;
 }
 
 footer.footer {
