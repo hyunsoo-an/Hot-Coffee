@@ -19,13 +19,6 @@ export default function CafeProfile() {
     return <p>There has been an error getting the cafe: {error.message}</p>
   }
 
-  const openGoogleMapsForDirections = () => {
-    const latitude = cafe.latitude
-    const longitude = cafe.longitude
-    const url = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}&origin=current+location`
-    window.open(url, '_blank')
-  }
-
   return (
     <section className="section">
       <AspectRatio ratio={16 / 9} className="overflow-hidden">
@@ -44,12 +37,6 @@ export default function CafeProfile() {
           <br />
           {cafe.city}
         </p>
-        <button
-          onClick={openGoogleMapsForDirections}
-          className="btn btn-primary"
-        >
-          Get Directions
-        </button>
       </div>
     </section>
   )
