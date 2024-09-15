@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { useCafe } from '@/hooks/useCafe'
+import { useCafeAlph } from '@/hooks/useCafe'
 
 interface SearchCafeProps {
   coffeeRating: boolean
@@ -31,7 +31,7 @@ export default function SearchCafe({
   onOpenChange,
   onSelectCafe,
 }: SearchCafeProps) {
-  const { data, isPending, isError, error } = useCafe()
+  const { data, isPending, isError, error } = useCafeAlph()
 
   if (isPending) {
     return <p>... is Pending</p>
