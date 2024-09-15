@@ -27,12 +27,17 @@ export default function CafeProfile() {
       </AspectRatio>
       <div>
         <h1 className="text-center text-xl font-bold">{cafe.name}</h1>
+        {cafe.avgRating >= 8 && (
+          <p className="text-center text-lg text-green-500">recommend Coffee</p>
+        )}
         <p className="text-base text-xs">
           {cafe.streetAddress}
           <br />
           {cafe.suburb}
           <br />
           {cafe.city}
+          <br />
+          {cafe.avgRating}
         </p>
       </div>
     </section>
