@@ -31,17 +31,17 @@ export default function RateForm() {
       await addNewRating(selectedRating, Number(selectedCafe))
     }
   }
-
   const addNewRating = async (
     selectedRating: boolean,
     selectedCafe: number,
   ) => {
     try {
+      const ipAddress = await getUserIP()
       const newRating: RatingData = {
         locationId: selectedCafe,
         rating: selectedRating,
         timestamp: new Date(),
-        ipAddress: String(getUserIP()),
+        ipAddress: String(ipAddress),
       }
       const newRatingId = await addMutation.mutateAsync(newRating)
 

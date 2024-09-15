@@ -1,6 +1,7 @@
 import { useCafeById } from '@/hooks/useCafe'
 import { useParams } from 'react-router-dom'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
+import DisplayMap from './DisplayMap'
 
 export default function CafeProfile() {
   const params = useParams()
@@ -16,7 +17,7 @@ export default function CafeProfile() {
   }
 
   if (isError) {
-    return <p>There has been an error getting the cafe: {error.message}</p>
+    return <p>Theres been an error getting the cafe: {error.message}</p>
   }
 
   return (
@@ -37,6 +38,9 @@ export default function CafeProfile() {
           <br />
           {cafe.city}
         </p>
+      </div>
+      <div>
+        <DisplayMap cafe={cafe} />
       </div>
     </section>
   )
