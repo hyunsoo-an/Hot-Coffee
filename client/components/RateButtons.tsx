@@ -21,8 +21,9 @@ export default function RateButtons({
   }
 
   return (
-    <div className="flex gap-2">
+    <div className="grid grid-cols-2 gap-dy">
       <Button
+        className="flex-grow"
         onClick={(event) => handleSelection(event, false)}
         variant={selectedRating === false ? 'default' : 'outline'}
         disabled={isWaiting}
@@ -30,6 +31,7 @@ export default function RateButtons({
         Bad
       </Button>
       <Button
+        className="flex-grow"
         onClick={(event) => handleSelection(event, true)}
         variant={selectedRating === true ? 'default' : 'outline'}
         disabled={isWaiting}
