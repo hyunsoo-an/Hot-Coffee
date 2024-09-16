@@ -1,16 +1,7 @@
 import { Cafe } from '../../models/cafes'
 import { Link } from 'react-router-dom'
 
-export default function CafeListItem({
-  cafe,
-  distance,
-}: {
-  cafe: Cafe
-  distance: string
-}) {
-  // console.log(cafe)
-  // console.log(distance)
-
+export default function CafeListItem({ cafe }: { cafe: Cafe }) {
   return (
     <div className="mb-4 rounded-lg shadow-md">
       <Link
@@ -23,7 +14,7 @@ export default function CafeListItem({
           {cafe.avgRating}
         </p>
         <p className="col-start-2 row-start-2 mr-3 mt-1 text-sm text-muted-foreground">
-          {distance}
+          {cafe.distance}
         </p>
       </Link>
     </div>

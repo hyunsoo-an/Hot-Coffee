@@ -56,27 +56,43 @@ export default function CafeList({
     fetchDistances()
   }, [userLocation, cafes])
 
+  const cafesWithDistances = cafes.map((cafe, index) => {
+    const distance =
+      distances && distances[index] ? distances[index].distance.text : ' '
+    const value =
+      distances && distances[index] ? distances[index].distance.value : ' '
+    return {
+      ...cafe,
+      distance: distance,
+      value: Number(value),
+    }
+  })
+
+  cafesWithDistances.sort((a, b) => {
+    const ratingA = a.avgRating ?? 0
+    const ratingB = b.avgRating ?? 0
+
+    if (a.avgRating === b.avgRating) {
+      return a.value - b.value
+    }
+    return ratingB - ratingA
+  })
+
   return (
-    <div className="grid gap-dy">
-      {error ? (
-        <div className="error-message">
-          <p>{error}</p>
-        </div>
-      ) : loading ? (
-        <div>Loading distances...</div>
-      ) : (
-        cafes.map((cafe, index) => (
-          <CafeListItem
-            key={index}
-            cafe={cafe}
-            distance={
-              distances && distances[index]
-                ? String(distances[index].distance.text)
-                : ' '
-            }
-          />
-        ))
-      )}
-    </div>
+    <>
+      <div className="grid gap-dy">
+        {error ? (
+          <div className="error-message">
+            <p>{error}</p>
+          </div>
+        ) : loading ? (
+          <div>Loading distances...</div>
+        ) : (
+          cafesWithDistances.map((cafe, index) => (
+            <CafeListItem key={index} cafe={cafe} />
+          ))
+        )}
+      </div>
+    </>
   )
 }
