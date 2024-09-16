@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faEarthOceania,
   faStar,
+  faThumbsDown,
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -39,8 +40,12 @@ export default function CafeProfile() {
         <h1 className="text-center text-xl font-bold">{cafe.name}</h1>
         {cafe.avgRating >= 8 && (
           <p className="text-center text-lg text-green-500">
-            <FontAwesomeIcon icon={faThumbsUp}></FontAwesomeIcon> Recommend
-            Coffee
+            <FontAwesomeIcon icon={faThumbsUp} /> Recommend Coffee
+          </p>
+        )}
+        {cafe.avgRating < 3 && (
+          <p className="text-center text-lg text-red-500">
+            <FontAwesomeIcon icon={faThumbsDown} /> Non-recommended Coffee
           </p>
         )}
         <p className="text-center text-sm">
