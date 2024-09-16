@@ -159,5 +159,4 @@ footer.footer {
   padding: var(--spacing-site);
   justify-items: center;
   align-items: center;
-  z-index: 10;
 }
