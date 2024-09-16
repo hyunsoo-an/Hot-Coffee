@@ -3,6 +3,7 @@ import { Cafe } from '../../models/cafes'
 import { getDistance } from '../api/distance'
 import { useEffect, useState } from 'react'
 import { Element } from 'models/GoogleDistanceAPIResult'
+import Loading from './Loading'
 
 type UserLocation = {
   latitude: number
@@ -86,7 +87,7 @@ export default function CafeList({
             <p>{error}</p>
           </div>
         ) : loading ? (
-          <div>Loading distances...</div>
+          <Loading />
         ) : (
           cafesWithDistances.map((cafe, index) => (
             <CafeListItem key={index} cafe={cafe} />
