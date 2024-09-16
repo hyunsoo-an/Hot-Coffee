@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import styles from './Loading.module.css'
+import styles from '../styles/Loading.module.css'
 
 export default function LoadingSpinner() {
   const [isLoading, setIsLoading] = useState(true)
