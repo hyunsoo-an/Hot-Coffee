@@ -1,5 +1,5 @@
 import { GoogleMap, LoadScriptNext, Marker } from '@react-google-maps/api'
-import { API_HOST } from '../env'
+import { VITE_GOOGLE_API_KEY } from '../env'
 import { Cafe } from 'models/cafes'
 const defaultCenter = {
   lat: -41.296881158626114,
@@ -26,7 +26,7 @@ export default function DisplayMap({ cafe }: DisplayMapProps) {
 
   return (
     <div className="mt-16 border-4 border-accent">
-      <LoadScriptNext googleMapsApiKey={API_HOST}>
+      <LoadScriptNext googleMapsApiKey={VITE_GOOGLE_API_KEY}>
         <GoogleMap mapContainerStyle={mapStyles} zoom={18} center={center}>
           <Marker position={center} />
         </GoogleMap>
