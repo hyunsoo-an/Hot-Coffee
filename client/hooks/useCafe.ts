@@ -17,3 +17,10 @@ export function useCafe() {
   })
   return query
 }
+export function useCafeAlph() {
+  const query = useQuery({
+    queryKey: ['cafes'],
+    queryFn: () => API.getCafesAlph(),
+  })
+  return query
+}
