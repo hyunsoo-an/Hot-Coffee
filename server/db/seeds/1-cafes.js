@@ -67,8 +67,8 @@ export async function seed(knex) {
     {
       id: 6,
       name: 'Shelly Bay Baker on Leeds Street',
-      longitude: 174.77711330716505,
-      latitude: -41.29291407580111,
+      longitude: 174.7771125390182,
+      latitude: -41.292910827817245,
       image: 'leeds_street_bakery.jpg',
       google_id: 'example_google_id_6',
       directions_url: 'https://goo.gl/maps/example6',
