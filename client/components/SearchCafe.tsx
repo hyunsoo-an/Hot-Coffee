@@ -57,7 +57,7 @@ export default function SearchCafe({
             variant="outline"
             role="combobox"
             aria-expanded={open ?? undefined}
-            className="w-[200px] justify-between"
+            className="justify-between"
           >
             {value
               ? cafes.find((cafe) => String(cafe.id) === value)?.name
@@ -65,7 +65,7 @@ export default function SearchCafe({
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[200px] p-0">
+        <PopoverContent className="w-[80svw] p-0">
           <Command>
             <CommandInput placeholder="Search cafe..." />
             <CommandList>
