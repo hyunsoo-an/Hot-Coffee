@@ -21,7 +21,7 @@ export default function LoadingSpinner() {
       {isLoading && (
         <img src="/loading.png" alt="Loading" className={styles.image} />
       )}
-      <p className={styles.subtitle}>Please allow location access</p>
+      <p className={styles.subtitle}>...</p>
     </div>
   )
 }

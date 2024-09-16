@@ -14,7 +14,6 @@ import RateCoffee from './components/RateCoffee.tsx'
 import FindCafe from './components/FindCafe.tsx'
 import SecondaryRating from './components/SecondaryRating.tsx'
 import CafeProfile from './components/CafeProfile.tsx'
-import Loading from './components/Loading.tsx'
 
 // Create Page Routes
 const router = createBrowserRouter(
@@ -23,7 +22,6 @@ const router = createBrowserRouter(
       <Route index element={<RateCoffee />} />
       <Route path="/rating/:ratingId" element={<SecondaryRating />} />
       <Route path="/cafes" element={<FindCafe />} />
-      <Route path="/cafes/loading" element={<Loading />} />
       <Route path="/cafes/:cafeId" element={<CafeProfile />} />
     </Route>,
   ),

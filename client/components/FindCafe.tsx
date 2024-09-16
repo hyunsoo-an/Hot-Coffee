@@ -2,6 +2,7 @@ import CafeList from './CafeList'
 import { getCafeList } from '../api/cafe'
 import { useQuery } from '@tanstack/react-query'
 import { useUserLocation } from '../hooks/useUserLocation'
+import Loading from './Loading'
 
 export default function FindCafe() {
   const userLocation = useUserLocation()
@@ -17,8 +18,7 @@ export default function FindCafe() {
   let outlet = <></>
 
   if (!userLocation) {
-    outlet = <p>Fetching your location...</p> // show loading message while waiting for location
-    // replace this with hanks loading animation when ready in main
+    outlet = <Loading />
   } else {
     isPending && (outlet = <p>Loading...</p>)
     isError && (outlet = <p>Error Loading Cafes</p>)
