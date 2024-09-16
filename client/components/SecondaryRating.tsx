@@ -2,6 +2,7 @@ import { useState } from 'react'
 // import { deleteRating } from '../api/deleteRating'
 import { useDeleteRating } from '../hooks/useDeleteRating'
 import { useParams, useNavigate } from 'react-router-dom'
+import { Button } from './ui/button'
 
 interface RouteParams extends Record<string, string | undefined> {
   id: string
@@ -46,16 +47,16 @@ export default function SecondaryRating() {
   }
 
   return (
-    <div className="grid auto-rows-min content-center justify-items-center gap-dy">
-      <h1>Thanks for your rating!</h1>
-      <p>Feedback like yours helps more people avoid bad coffee.</p>
-      <button
-        onClick={handleUndo}
-        className="text-blue-500"
-        aria-label="Undo Rating"
-      >
-        Undo Rating
-      </button>
-    </div>
+    <section className="section">
+      <div className="content-wrapper text-center">
+        <h1 className="font-semibold">Thanks for your rating!</h1>
+        <p className="text-muted-foreground">
+          Feedback like yours helps more people avoid bad coffee.
+        </p>
+        <Button onClick={handleUndo} aria-label="Undo Rating" variant="link">
+          Undo Rating
+        </Button>
+      </div>
+    </section>
   )
 }

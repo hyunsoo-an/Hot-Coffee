@@ -9,9 +9,9 @@ export default function FindCafe() {
   const { data, isPending, isError, isSuccess } = useQuery({
     queryKey: ['cafes'],
     queryFn: () => getCafeList(),
-    staleTime: Infinity,
+    staleTime: 1000,
     refetchOnWindowFocus: false,
-    refetchOnMount: false,
+    refetchOnMount: true,
   })
 
   let outlet = <></>
