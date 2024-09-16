@@ -110,6 +110,7 @@ header.header {
   right: 0;
   background-color: hsl(var(--background));
   border-top: solid hsl(var(--border));
+  z-index: 99;
 }
 
 footer.footer {
@@ -118,27 +119,29 @@ footer.footer {
 
 /* Push page-grid down to main sections */
 
-.page > * {
+:where(.page > *) {
   display: grid;
   grid-template-columns: subgrid;
   grid-column: 1 / -1;
 }
 
-.page > * > * {
+:where(.page > * > *) {
   grid-column: 1 / -1;
 }
 
-main.content > section {
+:where(main.content > section) {
   display: grid;
   grid-template-columns: subgrid;
   grid-auto-rows: max-content;
+  row-gap: var(--gap-y);
+  padding-block: var(--gap-y);
 }
 
-main.content > section > * {
+:where(main.content > section > *) {
   grid-column: 2 / -2;
 }
 
-main.content > *:first-child {
+:where(main.content > *:first-child) {
   padding-top: calc(var(--spacing-site) * 2);
 }
 
