@@ -2,6 +2,12 @@ import { useCafeById } from '@/hooks/useCafe'
 import { useParams } from 'react-router-dom'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import DisplayMap from './DisplayMap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faEarthOceania,
+  faStar,
+  faThumbsUp,
+} from '@fortawesome/free-solid-svg-icons'
 
 export default function CafeProfile() {
   const params = useParams()
@@ -32,19 +38,22 @@ export default function CafeProfile() {
       <div>
         <h1 className="text-center text-xl font-bold">{cafe.name}</h1>
         {cafe.avgRating >= 8 && (
-          <p className="text-center text-lg text-green-500">recommend Coffee</p>
+          <p className="text-center text-lg text-green-500">
+            <FontAwesomeIcon icon={faThumbsUp}></FontAwesomeIcon> Recommend
+            Coffee
+          </p>
         )}
-        <p className="text-base text-xs">
-          {cafe.streetAddress}
+        <p className="text-center text-sm">
+          <FontAwesomeIcon icon={faEarthOceania} />
+          <span className="ml-2">
+            {cafe.streetAddress}, {cafe.suburb}, {cafe.city}
+          </span>
           <br />
-          {cafe.suburb}
-          <br />
-          {cafe.city}
-          <br />
-          {cafe.avgRating}
+          <FontAwesomeIcon icon={faStar} />
+          <span className="ml-2">{cafe.avgRating}</span>
         </p>
       </div>
-      <div>
+      <div className="-z-10">
         <DisplayMap cafe={cafe} />
       </div>
     </section>
