@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
         destinations: destinations,
         origins: origins,
         units: 'metric',
-        key: process.env.GOOGLE_API_KEY,
+        key: process.env.VITE_GOOGLE_API_KEY,
       })
     res.json(response.body.rows[0].elements)
   } catch (error) {
