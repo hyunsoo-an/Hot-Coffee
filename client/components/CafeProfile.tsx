@@ -5,6 +5,7 @@ import { AspectRatio } from '@/components/ui/aspect-ratio'
 import DisplayMap from './DisplayMap'
 import RateButtons from './RateButtons'
 import { useAddRating } from '@/hooks/useAddRating'
+import { MapPin, Star, ThumbsDown, ThumbsUp } from 'lucide-react'
 
 export default function CafeProfile() {
   const params = useParams()
@@ -38,12 +39,29 @@ export default function CafeProfile() {
           </AspectRatio>
         </div>
         <div className="content-wrapper">
-          <h1 className="text-xl font-bold">{cafe.name}</h1>
-          <p className="text-xs">
+          <h1 className="text-center text-xl font-bold">{cafe.name}</h1>
+          {cafe.avgRating >= 8 && (
+            <p className="flex items-center justify-center text-center text-lg text-green-500">
+              <ThumbsUp className="mb-1.5 mr-1" />
+              Recommend Coffee
+            </p>
+          )}
+          {cafe.avgRating < 3 && (
+            <p className="flex items-center justify-center text-center text-lg text-red-500">
+              <ThumbsDown className="mr-1 mt-1" />
+              Non-recommended Coffee
+            </p>
+          )}
+          <p className="flex items-start justify-start text-sm">
+            <MapPin className="mr-1" />
             {cafe.streetAddress}, {cafe.suburb}
             <br />
             {cafe.city}
           </p>
+          <div className="flex items-start justify-start">
+            <Star className="mr-1" />
+            <span className="ml-2">{cafe.avgRating}</span>
+          </div>
         </div>
         <div className="content-wrapper">
           <h2 className="text-sm font-semibold">Rate Coffee</h2>
