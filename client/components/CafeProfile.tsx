@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import DisplayMap from './DisplayMap'
+import GetDirectionButton from './GetDirectionsButton'
 import RateButtons from './RateButtons'
 import { useAddRating } from '@/hooks/useAddRating'
 import { MapPin, Star, ThumbsDown, ThumbsUp } from 'lucide-react'
@@ -69,6 +70,9 @@ export default function CafeProfile() {
             selectedRating={selectedRating}
             onSelection={handleSelection}
           />
+        </div>
+        <div>
+          <GetDirectionButton cafe={cafe} />
         </div>
         <div>
           <DisplayMap cafe={cafe} />
