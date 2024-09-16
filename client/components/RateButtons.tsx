@@ -3,13 +3,13 @@ import { Button } from './ui/button'
 
 interface RateButtonsProps {
   selectedRating: boolean | null
-  isWaiting: boolean
+  //isWaiting: boolean
   onSelection: (value: boolean) => void
 }
 
 export default function RateButtons({
   selectedRating,
-  isWaiting,
+  //isWaiting,
   onSelection,
 }: RateButtonsProps) {
   const handleSelection = (
@@ -24,19 +24,19 @@ export default function RateButtons({
     <div className="grid grid-cols-2 gap-dy">
       <Button
         className="flex-grow"
-        onClick={(event) => handleSelection(event, false)}
-        variant={selectedRating === false ? 'default' : 'outline'}
-        disabled={isWaiting}
+        onClick={(event) => handleSelection(event, true)}
+        variant={selectedRating === true ? 'default' : 'outline'}
+        //disabled={isWaiting}
       >
-        Bad
+        Good
       </Button>
       <Button
         className="flex-grow"
-        onClick={(event) => handleSelection(event, true)}
-        variant={selectedRating === true ? 'default' : 'outline'}
-        disabled={isWaiting}
+        onClick={(event) => handleSelection(event, false)}
+        variant={selectedRating === false ? 'default' : 'outline'}
+        //disabled={isWaiting}
       >
-        Good
+        Bad
       </Button>
     </div>
   )
