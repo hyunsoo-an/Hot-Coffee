@@ -1,55 +1,23 @@
 import { useCafeById } from '@/hooks/useCafe'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
-import { addRating } from '@/api/addRatingApi'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import DisplayMap from './DisplayMap'
 import RateButtons from './RateButtons'
-import { RatingData } from 'models/ratings'
+import { useAddRating } from '@/hooks/useAddRating'
 
 export default function CafeProfile() {
-  const navigate = useNavigate()
   const params = useParams()
   const id = params.cafeId
   const { data: cafe, isError, error, isPending } = useCafeById(String(id))
+  const addMutation = useAddRating()
 
   // Rate Buttons
   const [selectedRating, setSelectedRating] = useState<boolean | null>(null)
-  const [isWaiting, setIsWaiting] = useState(false) // Can possibly be removed on refactor
-
-  const handleSelection = async (value: boolean) => {
-    setSelectedRating(value)
-    setIsWaiting(true)
-    await addNewRating(selectedRating, Number(id))
-  }
-
-  // This should be broken out into its own function or api function?ß
-
-  const addNewRating = async (
-    selectedRating: boolean,
-    selectedCafe: number,
-  ) => {
-    try {
-      const response = await addRating({
-        locationId: selectedCafe,
-        rating: selectedRating,
-        timestamp: new Date(),
-        ipAddress: '11.22.33.44.55.66', // to be updated once we have the option to dynamically grab user IP address
-      } as RatingData)
-
-      console.log(response)
-
-      if (response == 200) {
-        setTimeout(() => {
-          navigate(`/rating/${selectedCafe}`)
-        }, 330)
-      } else {
-        console.error('Failed to add rating. Status code:', response)
-      }
-    } catch (error) {
-      console.error('Error adding rating:', error)
-    }
+  const handleSelection = async (rating: boolean) => {
+    setSelectedRating(rating)
+    const locationId = Number(id)
+    await addMutation.mutateAsync({ rating, locationId })
   }
 
   //Conditionally Render Page
@@ -81,7 +49,6 @@ export default function CafeProfile() {
           <h2 className="text-sm font-semibold">Rate Coffee</h2>
           <RateButtons
             selectedRating={selectedRating}
-            isWaiting={isWaiting}
             onSelection={handleSelection}
           />
         </div>
