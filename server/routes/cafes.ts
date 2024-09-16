@@ -28,7 +28,7 @@ router.get('/alph', async (req, res) => {
   try {
     const suburbName =
       typeof req.query.suburb === 'string' ? req.query.suburb : undefined
-    const cafes = await db.getAllCafesAlpa(suburbName)
+    const cafes = await db.getAllCafesAlph(suburbName)
 
     cafes.map(
       (cafe) =>

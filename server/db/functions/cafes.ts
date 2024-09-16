@@ -56,7 +56,7 @@ export function getAllCafes(suburb?: string | undefined) {
 }
 
 // Getting all cafes by alphabetical order
-export function getAllCafesAlpa(suburb?: string | undefined) {
+export function getAllCafesAlph(suburb?: string | undefined) {
   const cafes = db('cafes')
     .leftJoin('ratings', 'cafes.id', 'ratings.location_id')
     .select(
