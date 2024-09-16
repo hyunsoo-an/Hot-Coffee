@@ -8,8 +8,8 @@ export default function CafeListItem({
   cafe: Cafe
   distance: string
 }) {
-  console.log(cafe)
-  console.log(distance)
+  // console.log(cafe)
+  // console.log(distance)
 
   return (
     <div className="mb-4 rounded-lg shadow-md">

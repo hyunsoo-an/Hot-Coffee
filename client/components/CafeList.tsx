@@ -36,7 +36,7 @@ export default function CafeList({
           const result = await getDistance(origins, cafeCoordinates)
           if (result) {
             setDistances(result)
-            console.log(result)
+            // console.log(result)
           } else {
             setError('Unable to calculate distance.')
           }
@@ -49,8 +49,8 @@ export default function CafeList({
     fetchDistances()
   }, [userLocation, cafes])
 
-  console.log('cafes: ', cafes)
-  console.log('distances: ', distances)
+  // console.log('cafes: ', cafes)
+  // console.log('distances: ', distances)
 
   return (
     <div className="grid gap-dy">

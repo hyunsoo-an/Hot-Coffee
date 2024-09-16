@@ -15,14 +15,16 @@ export default function FindCafe() {
   })
 
   let outlet = <></>
-  if (!userLocation) {
+  if (!userLocation.userLocation) {
     outlet = <p>Fetching your location...</p> // show loading message while waiting for location
     // replace this with hanks loading animation when ready in main
   } else {
     isPending && (outlet = <p>Loading...</p>)
     isError && (outlet = <p>Error Loading Cafes</p>)
     isSuccess &&
-      (outlet = <CafeList cafes={data} userLocation={userLocation} />)
+      (outlet = (
+        <CafeList cafes={data} userLocation={userLocation.userLocation} />
+      ))
   }
 
   // user location data console log
