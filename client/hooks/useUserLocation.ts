@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 
-type UserLocation = {
-  latitude: number
-  longitude: number
-} | null
+type UserLocation =
+  | {
+      latitude: number
+      longitude: number
+    }
+  | 'Location Denied'
+  | null
 
 export function useUserLocation() {
   const [userLocation, setUserLocation] = useState<UserLocation>(null)
@@ -16,7 +19,11 @@ export function useUserLocation() {
           setUserLocation({ latitude, longitude })
         },
         (error) => {
-          console.error('Error getting user location:', error)
+          if (error.code === error.PERMISSION_DENIED) {
+            setUserLocation('Location Denied')
+          } else {
+            console.error('Error getting user location:', error)
+          }
         },
       )
     } else {

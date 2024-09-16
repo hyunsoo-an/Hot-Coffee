@@ -22,13 +22,13 @@ router.get('/', async (req, res) => {
   }
 })
 
-// Get /api/v1/cafes (name alph order)
-// Get /api/v1/cafes?suburb=Lyall Bay (name alph order)
-router.get('/', async (req, res) => {
+// Get /api/v1/cafes/alph (name alph order)
+// Get /api/v1/cafes/alph?suburb=Lyall Bay (name alph order)
+router.get('/alph', async (req, res) => {
   try {
     const suburbName =
       typeof req.query.suburb === 'string' ? req.query.suburb : undefined
-    const cafes = await db.getAllCafesAlpa(suburbName)
+    const cafes = await db.getAllCafesAlph(suburbName)
 
     cafes.map(
       (cafe) =>
