@@ -80,9 +80,12 @@
 /* --- Site structure --- */
 
 body {
+  display: grid;
+  min-height: 100svh;
 }
 
 #app {
+  flex-grow: 1;
   display: grid;
   grid-template-columns: auto minmax(0, 50rem) auto;
   grid-template-areas: '. content .';
