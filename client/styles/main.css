@@ -73,8 +73,8 @@
 /* --- Hot Coffee variables --- */
 :root {
   --spacing-site: 1rem;
-  --gap-x: 1.5rem; /* between columns */
-  --gap-y: 1rem; /* between rows */
+  --gap-x: 0.75rem; /* between columns */
+  --gap-y: 1.5rem; /* between rows */
 }
 
 /* --- Site structure --- */
@@ -152,5 +152,5 @@ footer.footer {
 :where(.content-wrapper) {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-y);
+  row-gap: var(--gap-y);
 }

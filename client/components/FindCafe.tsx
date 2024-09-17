@@ -31,6 +31,8 @@ export default function FindCafe() {
     <section className="section">
       <div className="content-wrapper">
         <h1 className="text-center font-semibold">Hot Coffee Near You</h1>
+      </div>
+      <div className="content-wrapper col-span-full grid grid-cols-subgrid">
         {outlet}
       </div>
     </section>

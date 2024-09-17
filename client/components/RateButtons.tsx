@@ -19,7 +19,7 @@ export default function RateButtons({
   }
 
   return (
-    <div className="grid gap-dy">
+    <div className="grid gap-dx">
       <Button
         className=""
         onClick={(event) => handleSelection(event, true)}
