@@ -27,9 +27,11 @@ export default function CafeProfile() {
   let mainContent
   let rateContent
   let mapContent
+
   if (isPending) mainContent = <p>Loading...</p>
   if (isError)
     mainContent = <p>Theres been an error getting cafe,{error.message}</p>
+
   if (cafe) {
     mainContent = (
       <>
@@ -62,23 +64,27 @@ export default function CafeProfile() {
                 <p>{cafe.city}</p>
               </div>
             </div>
+            {cafe.avgRating !== undefined && (
+              <>
+                <div className="col-span-full grid grid-cols-subgrid">
+                  <Star />
+                  <p className="font-bold">{cafe.avgRating}</p>
+                </div>
 
-            <div className="col-span-full grid grid-cols-subgrid">
-              <Star />
-              <p className="font-bold">{cafe.avgRating}</p>
-            </div>
+                {cafe.avgRating >= 8 && (
+                  <div className="col-span-full grid grid-cols-subgrid text-accent">
+                    <ThumbsUp />
+                    <p>Certified Hot Coffee</p>
+                  </div>
+                )}
 
-            {cafe.avgRating >= 8 && (
-              <div className="col-span-full grid grid-cols-subgrid text-accent">
-                <ThumbsUp />
-                <p>Certified Hot Coffee</p>
-              </div>
-            )}
-            {cafe.avgRating < 5 && (
-              <div className="col-span-full grid grid-cols-subgrid text-accent">
-                <ThumbsDown />
-                <p>Dirty Coffee</p>
-              </div>
+                {cafe.avgRating < 5 && (
+                  <div className="col-span-full grid grid-cols-subgrid text-accent">
+                    <ThumbsDown />
+                    <p>Dirty Coffee</p>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
