@@ -42,7 +42,7 @@ export default function CafeProfile() {
         <div className="content-wrapper">
           <h1 className="text-center text-xl font-bold">{cafe.name}</h1>
 
-          {cafe.avgRating !== undefined && (
+          {cafe.avgRating != undefined && (
             <>
               {cafe.avgRating >= 8 && (
                 <p className="flex items-center justify-center text-center text-lg text-green-500">
