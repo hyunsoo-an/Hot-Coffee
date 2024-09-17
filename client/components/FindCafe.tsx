@@ -30,7 +30,7 @@ export default function FindCafe() {
   return (
     <section className="section">
       <div className="content-wrapper">
-        <h1 className="text-center font-semibold">Find Wellington Cafes</h1>
+        <h1 className="text-center font-semibold">Hot Coffee Near You</h1>
         {outlet}
       </div>
     </section>
