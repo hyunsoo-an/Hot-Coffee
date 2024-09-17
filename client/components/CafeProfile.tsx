@@ -44,7 +44,7 @@ export default function CafeProfile() {
             <img
               src={`/images/${cafe.image}.jpeg`}
               alt={`${cafe.name}`}
-              className="object-cover"
+              className="w-full object-cover"
             />
           </AspectRatio>
         </div>
