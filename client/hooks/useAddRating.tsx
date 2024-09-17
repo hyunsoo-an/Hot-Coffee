@@ -19,7 +19,6 @@ export function useAddRating() {
       }
 
       const addedRateId = await addRating(newRating)
-      console.log(addedRateId)
       return addedRateId
     },
 
