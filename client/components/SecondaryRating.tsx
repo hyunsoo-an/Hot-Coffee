@@ -51,7 +51,7 @@ export default function SecondaryRating() {
       <div className="content-wrapper grid grid-rows-[auto_1fr] py-[10svh] text-center">
         <div className="grid gap-2">
           <h1 className="font-bold">Thanks for your rating</h1>
-          <p className="text-muted-foreground">
+          <p className="text-balance text-muted-foreground">
             Feedback like yours helps people avoid bad coffee.
           </p>
         </div>

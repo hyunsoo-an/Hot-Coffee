@@ -74,7 +74,7 @@
 :root {
   --spacing-site: 1rem;
   --gap-x: 0.75rem; /* between columns */
-  --gap-y: 1.5rem; /* between rows */
+  --gap-y: 1rem; /* between rows */
 }
 
 /* --- Site structure --- */

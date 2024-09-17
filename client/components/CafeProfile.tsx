@@ -96,7 +96,7 @@ export default function CafeProfile() {
       <div className="content-wrapper">
         <div className="flex flex-col gap-2">
           <h2 className="text-center font-semibold">Add Your Rating</h2>
-          <p className="text-center text-sm text-muted-foreground">{`How is the coffee at ${cafe.name}?`}</p>
+          <p className="text-balance text-center text-sm text-muted-foreground">{`How is the coffee at ${cafe.name}?`}</p>
         </div>
         <RateButtons
           selectedRating={selectedRating}
