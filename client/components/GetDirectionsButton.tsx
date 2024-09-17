@@ -30,8 +30,10 @@ export default function GetDirectionButton({ cafe }: CafeProp) {
   }
 
   return (
-    <div className="flex gap-2">
-      <Button onClick={openGoogleMapsForDirections}>Get Directions</Button>
+    <div className="grid">
+      <Button onClick={openGoogleMapsForDirections} variant="default">
+        Get Directions
+      </Button>
     </div>
   )
 }
