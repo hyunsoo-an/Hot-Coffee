@@ -15,6 +15,7 @@ import {
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { useCafeAlph } from '@/hooks/useCafe'
+import { useRef } from 'react'
 
 interface SearchCafeProps {
   coffeeRating: boolean
@@ -32,6 +33,7 @@ export default function SearchCafe({
   onSelectCafe,
 }: SearchCafeProps) {
   const { data, isPending, isError, error } = useCafeAlph()
+  const inputRef = useRef<HTMLInputElement>(null) // Ref for manual focus
 
   if (isPending) {
     return <p>... is Pending</p>
@@ -45,11 +47,12 @@ export default function SearchCafe({
 
   return (
     <>
-      <h2 className="font-semibold">
-        {coffeeRating
-          ? 'Where did you get this coffee?'
-          : 'Where did you get this terrible coffee'}
-      </h2>
+      <br />
+      {coffeeRating ? (
+        <h2>Where did you get this coffee?</h2>
+      ) : (
+        <h2>Where did you get this terrible coffee?</h2>
+      )}
       <Popover open={open ?? undefined} onOpenChange={onOpenChange}>
         <PopoverTrigger asChild>
           <Button
@@ -57,6 +60,11 @@ export default function SearchCafe({
             role="combobox"
             aria-expanded={open ?? undefined}
             className="justify-between"
+            onClick={() => {
+              if (open && inputRef.current) {
+                inputRef.current.focus() // Focus input only when Popover is opened by user action
+              }
+            }}
           >
             {value
               ? cafes.find((cafe) => String(cafe.id) === value)?.name
@@ -66,7 +74,12 @@ export default function SearchCafe({
         </PopoverTrigger>
         <PopoverContent className="w-[80svw] p-0">
           <Command>
-            <CommandInput placeholder="Search cafe..." />
+            <CommandInput
+              ref={inputRef}
+              placeholder="Search cafe..."
+              // eslint-disable-next-line jsx-a11y/no-autofocus
+              autoFocus={false} // Prevent initial auto focus
+            />
             <CommandList>
               <CommandEmpty>No cafe found.</CommandEmpty>
               <CommandGroup>
