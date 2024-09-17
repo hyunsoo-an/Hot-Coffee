@@ -33,7 +33,7 @@ export default function CafeProfile() {
         <div className="content-wrapper col-span-full">
           <AspectRatio ratio={16 / 9} className="overflow-hidden">
             <img
-              src="https://plus.unsplash.com/premium_photo-1663932464937-e677ddfc1d55?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src={`/public/images/${cafe.image}.jpeg`}
               alt={`${cafe.name}`}
               className="object-cover"
             />
