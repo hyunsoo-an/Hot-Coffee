@@ -1,8 +1,7 @@
 import CafeListItem from './CafeListItem'
 import { Cafe } from '../../models/cafes'
 import { getDistance } from '../api/distance'
-import { useEffect, useState } from 'react'
-import { Element } from 'models/GoogleDistanceAPIResult'
+import { useQuery } from '@tanstack/react-query'
 import Loading from './Loading'
 import ScrollUp from './ScrollUp'
 
@@ -18,51 +17,50 @@ export default function CafeList({
   cafes: Cafe[]
   userLocation: UserLocation | 'Location Denied'
 }) {
-  const [distances, setDistances] = useState<Element[] | null>(null)
-  const [error, setError] = useState<string | null>(null)
-  const [loading, setLoading] = useState<boolean>(false)
+  const fetchDistances = async () => {
+    const cafeCoordinates = cafes.map((cafe) => ({
+      lat: cafe.latitude.toString(),
+      long: cafe.longitude.toString(),
+    }))
 
-  useEffect(() => {
-    const fetchDistances = async () => {
-      if (
-        userLocation &&
-        userLocation !== 'Location Denied' &&
-        cafes.length > 0
-      ) {
-        setLoading(true)
-        const cafeCoordinates = cafes.map((cafe) => ({
-          lat: cafe.latitude.toString(),
-          long: cafe.longitude.toString(),
-        }))
-
-        const origins = {
-          lat: userLocation.latitude.toString(),
-          long: userLocation.longitude.toString(),
-        }
-
-        try {
-          const result = await getDistance(origins, cafeCoordinates)
-          if (result) {
-            setDistances(result)
-          } else {
-            setError('Unable to calculate distance.')
-          }
-        } catch (error) {
-          setError('Error fetching distances.')
-        } finally {
-          setLoading(false)
-        }
-      }
+    if (!userLocation || userLocation === 'Location Denied') {
+      throw new Error('User location is not available')
     }
 
-    fetchDistances()
-  }, [userLocation, cafes])
+    const origins = {
+      lat: userLocation.latitude.toString(),
+      long: userLocation.longitude.toString(),
+    }
+
+    const result = await getDistance(origins, cafeCoordinates)
+    if (result) {
+      return result
+    } else {
+      throw new Error('Unable to calculate distance.')
+    }
+  }
+
+  const {
+    data: distances,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: [
+      'distances',
+      userLocation,
+      cafes.map((cafe) => cafe.id).join('-'),
+    ],
+    queryFn: fetchDistances,
+    staleTime: 1 * 60 * 1000, //1 minute
+    enabled:
+      !!userLocation && userLocation !== 'Location Denied' && cafes.length > 0,
+  })
 
   const cafesWithDistances = cafes.map((cafe, index) => {
     const distance =
       distances && distances[index] ? distances[index].distance.text : ' '
     const value =
-      distances && distances[index] ? distances[index].distance.value : ' '
+      distances && distances[index] ? distances[index].distance.value : Infinity
     return {
       ...cafe,
       distance: distance,
@@ -81,21 +79,19 @@ export default function CafeList({
   })
 
   return (
-    <>
-      <div className="grid gap-px">
-        {error ? (
-          <div className="error-message">
-            <p>{error}</p>
-          </div>
-        ) : loading ? (
-          <Loading />
-        ) : (
-          cafesWithDistances.map((cafe, index) => (
-            <CafeListItem key={index} cafe={cafe} />
-          ))
-        )}
-        <ScrollUp />
-      </div>
-    </>
+    <div className="grid gap-px">
+      {error ? (
+        <div className="error-message">
+          <p>{error.message}</p>
+        </div>
+      ) : isLoading ? (
+        <Loading />
+      ) : (
+        cafesWithDistances.map((cafe, index) => (
+          <CafeListItem key={index} cafe={cafe} />
+        ))
+      )}
+      <ScrollUp />
+    </div>
   )
 }
