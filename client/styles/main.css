@@ -83,18 +83,21 @@ body {
 }
 
 #app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100svh;
+  display: grid;
+  grid-template-columns: auto minmax(0, 50rem) auto;
+  grid-template-areas: '. content .';
+  background-color: hsl(var(--background));
 }
 
 .page {
-  flex-grow: 1;
+  grid-area: content;
   display: grid;
   grid-template-rows: 1fr auto auto;
   grid-template-columns: 0 repeat(6, 1fr) 0;
   column-gap: var(--gap-x);
   position: relative;
+  background-color: hsl(var(--background));
+  box-shadow: hsl(var(--foreground) / 20%) 0px 7px 29px 0px;
 }
 
 main.content {
