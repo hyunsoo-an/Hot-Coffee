@@ -22,11 +22,11 @@ export default function CafeProfile() {
     await addMutation.mutateAsync({ rating, locationId })
   }
 
-  //Conditionally Render Page
+  // Conditionally Render Page
   let pageContent
   if (isPending) pageContent = <p>Loading...</p>
   if (isError)
-    pageContent = <p>Theres been an error getting cafe,{error.message}</p>
+    pageContent = <p>Theres been an error getting cafe, {error.message}</p>
   if (cafe) {
     pageContent = (
       <>
@@ -41,28 +41,34 @@ export default function CafeProfile() {
         </div>
         <div className="content-wrapper">
           <h1 className="text-center text-xl font-bold">{cafe.name}</h1>
-          {cafe.avgRating >= 8 && (
-            <p className="flex items-center justify-center text-center text-lg text-green-500">
-              <ThumbsUp className="mb-1.5 mr-1" />
-              Recommend Coffee
-            </p>
+
+          {cafe.avgRating !== undefined && (
+            <>
+              {cafe.avgRating >= 8 && (
+                <p className="flex items-center justify-center text-center text-lg text-green-500">
+                  <ThumbsUp className="mb-1.5 mr-1" />
+                  Recommend Coffee
+                </p>
+              )}
+              {cafe.avgRating < 3 && (
+                <p className="flex items-center justify-center text-center text-lg text-red-500">
+                  <ThumbsDown className="mr-1 mt-1" />
+                  Non-recommended Coffee
+                </p>
+              )}
+              <div className="flex items-start justify-start">
+                <Star className="mr-1" />
+                <span className="ml-2">{cafe.avgRating}</span>
+              </div>
+            </>
           )}
-          {cafe.avgRating < 3 && (
-            <p className="flex items-center justify-center text-center text-lg text-red-500">
-              <ThumbsDown className="mr-1 mt-1" />
-              Non-recommended Coffee
-            </p>
-          )}
+
           <p className="flex items-start justify-start text-sm">
             <MapPin className="mr-1" />
             {cafe.streetAddress}, {cafe.suburb}
             <br />
             {cafe.city}
           </p>
-          <div className="flex items-start justify-start">
-            <Star className="mr-1" />
-            <span className="ml-2">{cafe.avgRating}</span>
-          </div>
         </div>
         <div className="content-wrapper">
           <h2 className="text-sm font-semibold">Rate Coffee</h2>
