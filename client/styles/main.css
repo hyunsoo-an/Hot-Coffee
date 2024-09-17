@@ -17,7 +17,7 @@
     --popover: 342 100% 98%;
     --popover-foreground: 345 17% 9%;
     --muted: 344 100% 97%;
-    --muted-foreground: 38 12% 68%;
+    --muted-foreground: 39 11% 53%;
     --accent: 342 89% 65%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 81% 27%;
@@ -134,7 +134,7 @@ footer.footer {
   grid-template-columns: subgrid;
   grid-auto-rows: max-content;
   row-gap: var(--gap-y);
-  padding-block: var(--gap-y);
+  padding-block: calc(var(--gap-y) * 2);
 }
 
 :where(main.content > section > *) {
