@@ -81,7 +81,7 @@ export default function CafeList({
 
   return (
     <>
-      <div className="grid gap-dy">
+      <div className="grid gap-px">
         {error ? (
           <div className="error-message">
             <p>{error}</p>
