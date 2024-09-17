@@ -1,13 +1,13 @@
 import { useCafeById } from '@/hooks/useCafe'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Separator } from '@/components/ui/separator'
 import DisplayMap from './DisplayMap'
 import GetDirectionButton from './GetDirectionsButton'
 import RateButtons from './RateButtons'
 import { useAddRating } from '@/hooks/useAddRating'
-import { MapPin, Star, ThumbsDown, ThumbsUp } from 'lucide-react'
+import { ChevronLeft, MapPin, Star, ThumbsDown, ThumbsUp } from 'lucide-react'
 
 export default function CafeProfile() {
   const params = useParams()
@@ -33,6 +33,12 @@ export default function CafeProfile() {
   if (cafe) {
     mainContent = (
       <>
+        <div className="content-wrapper grid grid-cols-[auto_1fr] items-center gap-x-2">
+          <ChevronLeft />
+          <Link to="/cafes" className="text-xs font-semibold">
+            All Cafes
+          </Link>
+        </div>
         <div className="content-wrapper col-span-full">
           <AspectRatio ratio={16 / 9} className="overflow-hidden">
             <img
