@@ -25,7 +25,7 @@ export default function DisplayMap({ cafe }: DisplayMapProps) {
       : defaultCenter
 
   return (
-    <div className="mt-16 border-4 border-accent">
+    <div className="border-4 border-accent">
       <LoadScriptNext googleMapsApiKey={VITE_GOOGLE_API_KEY}>
         <GoogleMap mapContainerStyle={mapStyles} zoom={18} center={center}>
           <Marker position={center} />

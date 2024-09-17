@@ -1,12 +1,13 @@
 import { useCafeById } from '@/hooks/useCafe'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
+import { Separator } from '@/components/ui/separator'
 import DisplayMap from './DisplayMap'
 import GetDirectionButton from './GetDirectionsButton'
 import RateButtons from './RateButtons'
 import { useAddRating } from '@/hooks/useAddRating'
-import { MapPin, Star, ThumbsDown, ThumbsUp } from 'lucide-react'
+import { ChevronLeft, MapPin, Star, ThumbsDown, ThumbsUp } from 'lucide-react'
 
 export default function CafeProfile() {
   const params = useParams()
@@ -23,13 +24,21 @@ export default function CafeProfile() {
   }
 
   //Conditionally Render Page
-  let pageContent
-  if (isPending) pageContent = <p>Loading...</p>
+  let mainContent
+  let rateContent
+  let mapContent
+  if (isPending) mainContent = <p>Loading...</p>
   if (isError)
-    pageContent = <p>Theres been an error getting cafe,{error.message}</p>
+    mainContent = <p>Theres been an error getting cafe,{error.message}</p>
   if (cafe) {
-    pageContent = (
+    mainContent = (
       <>
+        <div className="content-wrapper grid grid-cols-[auto_1fr] items-center gap-x-2">
+          <ChevronLeft />
+          <Link to="/cafes" className="text-xs font-semibold">
+            All Cafes
+          </Link>
+        </div>
         <div className="content-wrapper col-span-full">
           <AspectRatio ratio={16 / 9} className="overflow-hidden">
             <img
@@ -41,45 +50,64 @@ export default function CafeProfile() {
         </div>
         <div className="content-wrapper">
           <h1 className="text-center text-xl font-bold">{cafe.name}</h1>
-          {cafe.avgRating >= 8 && (
-            <p className="flex items-center justify-center text-center text-lg text-green-500">
-              <ThumbsUp className="mb-1.5 mr-1" />
-              Recommend Coffee
-            </p>
-          )}
-          {cafe.avgRating < 3 && (
-            <p className="flex items-center justify-center text-center text-lg text-red-500">
-              <ThumbsDown className="mr-1 mt-1" />
-              Non-recommended Coffee
-            </p>
-          )}
-          <p className="flex items-start justify-start text-sm">
-            <MapPin className="mr-1" />
-            {cafe.streetAddress}, {cafe.suburb}
-            <br />
-            {cafe.city}
-          </p>
-          <div className="flex items-start justify-start">
-            <Star className="mr-1" />
-            <span className="ml-2">{cafe.avgRating}</span>
-          </div>
-        </div>
-        <div className="content-wrapper">
-          <h2 className="text-sm font-semibold">Rate Coffee</h2>
-          <RateButtons
-            selectedRating={selectedRating}
-            onSelection={handleSelection}
-          />
-        </div>
-        <div>
           <GetDirectionButton cafe={cafe} />
-        </div>
-        <div>
-          <DisplayMap cafe={cafe} />
+          <Separator />
+          <div className="grid grid-cols-[auto_1fr] gap-x-dx gap-y-dy">
+            <div className="col-span-full grid grid-cols-subgrid">
+              <MapPin />
+              <div>
+                <p>
+                  {cafe.streetAddress}, {cafe.suburb}
+                </p>
+                <p>{cafe.city}</p>
+              </div>
+            </div>
+
+            <div className="col-span-full grid grid-cols-subgrid">
+              <Star />
+              <p className="font-bold">{cafe.avgRating}</p>
+            </div>
+
+            {cafe.avgRating >= 8 && (
+              <div className="col-span-full grid grid-cols-subgrid text-accent">
+                <ThumbsUp />
+                <p>Certified Hot Coffee</p>
+              </div>
+            )}
+            {cafe.avgRating < 5 && (
+              <div className="col-span-full grid grid-cols-subgrid text-accent">
+                <ThumbsDown />
+                <p>Dirty Coffee</p>
+              </div>
+            )}
+          </div>
         </div>
       </>
     )
+    rateContent = (
+      <div className="content-wrapper">
+        <h2 className="text-center font-semibold">Add Your Rating</h2>
+        <p className="text-center text-sm text-muted-foreground">{`How is the coffee at ${cafe.name}?`}</p>
+        <RateButtons
+          selectedRating={selectedRating}
+          onSelection={handleSelection}
+        />
+      </div>
+    )
+
+    mapContent = (
+      <div className="content-wrapper">
+        <h2 className="text-center font-semibold">{"See What's Nearby"}</h2>
+        <DisplayMap cafe={cafe} />
+      </div>
+    )
   }
 
-  return <section className="section">{pageContent}</section>
+  return (
+    <>
+      <section className="section">{mainContent}</section>
+      <section className="section bg-muted">{rateContent}</section>
+      <section className="section">{mapContent}</section>
+    </>
+  )
 }
