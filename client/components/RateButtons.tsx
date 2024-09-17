@@ -19,16 +19,16 @@ export default function RateButtons({
   }
 
   return (
-    <div className="grid grid-cols-2 gap-dy">
+    <div className="grid gap-dy">
       <Button
-        className="flex-grow"
+        className=""
         onClick={(event) => handleSelection(event, true)}
         variant={selectedRating === true ? 'default' : 'outline'}
       >
         Good
       </Button>
       <Button
-        className="flex-grow"
+        className=""
         onClick={(event) => handleSelection(event, false)}
         variant={selectedRating === false ? 'default' : 'outline'}
       >

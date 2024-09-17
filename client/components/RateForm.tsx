@@ -25,22 +25,26 @@ export default function RateForm() {
   }
 
   return (
-    <form className="grid gap-dy text-center">
-      <h1>How was your coffee?</h1>
-      <RateButtons
-        selectedRating={selectedRating}
-        onSelection={handleSelection}
-      />
+    <form className="grid gap-y-10 text-center">
+      <div className="grid gap-dy">
+        <h1 className="font-semibold">How was your coffee?</h1>
+        <RateButtons
+          selectedRating={selectedRating}
+          onSelection={handleSelection}
+        />
+      </div>
       {selectedRating == null ? (
         <></>
       ) : (
-        <SearchCafe
-          coffeeRating={selectedRating}
-          open={open}
-          value={value}
-          onOpenChange={setOpen}
-          onSelectCafe={handleCafeSelect}
-        />
+        <div className="grid gap-dy">
+          <SearchCafe
+            coffeeRating={selectedRating}
+            open={open}
+            value={value}
+            onOpenChange={setOpen}
+            onSelectCafe={handleCafeSelect}
+          />
+        </div>
       )}
     </form>
   )

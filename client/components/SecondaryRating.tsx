@@ -48,12 +48,19 @@ export default function SecondaryRating() {
 
   return (
     <section className="section">
-      <div className="content-wrapper text-center">
-        <h1 className="font-semibold">Thanks for your rating!</h1>
-        <p className="text-muted-foreground">
-          Feedback like yours helps more people avoid bad coffee.
-        </p>
-        <Button onClick={handleUndo} aria-label="Undo Rating" variant="link">
+      <div className="content-wrapper grid grid-rows-[auto_1fr] py-[10svh] text-center">
+        <div className="grid gap-2">
+          <h1 className="font-bold">Thanks for your rating</h1>
+          <p className="text-muted-foreground">
+            Feedback like yours helps people avoid bad coffee.
+          </p>
+        </div>
+        <Button
+          className="self-end"
+          onClick={handleUndo}
+          aria-label="Undo Rating"
+          variant="destructive"
+        >
           Undo Rating
         </Button>
       </div>
