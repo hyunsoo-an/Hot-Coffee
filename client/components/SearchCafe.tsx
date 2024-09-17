@@ -45,12 +45,11 @@ export default function SearchCafe({
 
   return (
     <>
-      <br />
-      {coffeeRating ? (
-        <h2>Where did you get this coffee?</h2>
-      ) : (
-        <h2>Where did you get this terrible coffee</h2>
-      )}
+      <h2 className="font-semibold">
+        {coffeeRating
+          ? 'Where did you get this coffee?'
+          : 'Where did you get this terrible coffee'}
+      </h2>
       <Popover open={open ?? undefined} onOpenChange={onOpenChange}>
         <PopoverTrigger asChild>
           <Button
