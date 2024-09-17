@@ -17,8 +17,8 @@
     --popover: 342 100% 98%;
     --popover-foreground: 345 17% 9%;
     --muted: 344 100% 97%;
-    --muted-foreground: 39 11% 53%;
-    --accent: 342 89% 65%;
+    --muted-foreground: 42 13% 41%;
+    --accent: 342 69% 53%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 81% 27%;
     --destructive-foreground: 0 0% 100%;
@@ -104,12 +104,10 @@ main.content {
 
 header.header {
   position: fixed;
+  inset: 0;
   top: auto;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: hsl(var(--background));
-  border-top: solid hsl(var(--border));
+  /* background-color: hsl(var(--background)); */
+  /* border-top: solid hsl(var(--border)); */
   z-index: 99;
 }
 
@@ -132,7 +130,7 @@ footer.footer {
 :where(main.content > section) {
   display: grid;
   grid-template-columns: subgrid;
-  grid-auto-rows: max-content;
+  /* grid-auto-rows: max-content; */
   row-gap: var(--gap-y);
   padding-block: calc(var(--gap-y) * 2);
 }
@@ -149,14 +147,4 @@ footer.footer {
   display: flex;
   flex-direction: column;
   gap: var(--gap-y);
-}
-
-/* --- Navbar --- */
-
-.navbar {
-  display: grid;
-  grid-auto-flow: column;
-  padding: var(--spacing-site);
-  justify-items: center;
-  align-items: center;
 }
