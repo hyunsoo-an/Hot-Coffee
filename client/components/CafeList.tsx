@@ -79,7 +79,7 @@ export default function CafeList({
   })
 
   return (
-    <div className="grid gap-px">
+    <ul className="col-span-full grid grid-cols-subgrid gap-y-px">
       {error ? (
         <div className="error-message">
           <p>{error.message}</p>
@@ -92,6 +92,6 @@ export default function CafeList({
         ))
       )}
       <ScrollUp />
-    </div>
+    </ul>
   )
 }

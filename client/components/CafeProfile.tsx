@@ -42,58 +42,62 @@ export default function CafeProfile() {
           </Link>
         </div>
         <div className="content-wrapper col-span-full">
-          <AspectRatio ratio={16 / 9} className="overflow-hidden">
+          <AspectRatio ratio={16 / 9} className="overflow-hidden bg-primary/20">
             <img
               src={`/images/${cafe.image}.jpeg`}
               alt={`${cafe.name}`}
-              className="object-cover"
+              className="min-h-full min-w-full object-cover mix-blend-luminosity"
             />
           </AspectRatio>
         </div>
         <div className="content-wrapper">
           <h1 className="text-center text-xl font-bold">{cafe.name}</h1>
           <GetDirectionButton cafe={cafe} />
-          <Separator />
-          <div className="grid grid-cols-[auto_1fr] gap-x-dx gap-y-dy">
-            <div className="col-span-full grid grid-cols-subgrid">
-              <MapPin />
-              <div>
-                <p>
-                  {cafe.streetAddress}, {cafe.suburb}
-                </p>
-                <p>{cafe.city}</p>
-              </div>
+        </div>
+        <Separator />
+        <div className="content-wrapper grid grid-cols-subgrid gap-x-dx gap-y-dy">
+          <div className="col-span-full grid grid-cols-subgrid">
+            <MapPin className="justify-self-end" />
+            <div className="col-start-2 col-end-[-1]">
+              <p>
+                {cafe.streetAddress}, {cafe.suburb}
+              </p>
+              <p>{cafe.city}</p>
             </div>
-            {cafe.avgRating !== undefined && (
-              <>
-                <div className="col-span-full grid grid-cols-subgrid">
-                  <Star />
-                  <p className="font-bold">{cafe.avgRating}</p>
-                </div>
-
-                {cafe.avgRating >= 8 && (
-                  <div className="col-span-full grid grid-cols-subgrid text-accent">
-                    <ThumbsUp />
-                    <p>Certified Hot Coffee</p>
-                  </div>
-                )}
-
-                {cafe.avgRating < 5 && (
-                  <div className="col-span-full grid grid-cols-subgrid text-accent">
-                    <ThumbsDown />
-                    <p>Dirty Coffee</p>
-                  </div>
-                )}
-              </>
-            )}
           </div>
+          {cafe.avgRating !== undefined && (
+            <>
+              <div className="col-span-full grid grid-cols-subgrid">
+                <Star className="justify-self-end" />
+                <p className="col-start-2 col-end-[-1]">
+                  <span className="font-black">{cafe.avgRating}</span> / 10
+                </p>
+              </div>
+              {cafe.avgRating >= 8 && (
+                <div className="col-span-full grid grid-cols-subgrid text-accent">
+                  <ThumbsUp className="justify-self-end" />
+                  <p className="col-start-2 col-end-[-1]">
+                    Certified Hot Coffee
+                  </p>
+                </div>
+              )}
+              {cafe.avgRating < 5 && (
+                <div className="col-span-full grid grid-cols-subgrid text-accent">
+                  <ThumbsDown className="justify-self-end" />
+                  <p className="col-start-2 col-end-[-1]">Sad Coffee</p>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </>
     )
     rateContent = (
       <div className="content-wrapper">
-        <h2 className="text-center font-semibold">Add Your Rating</h2>
-        <p className="text-center text-sm text-muted-foreground">{`How is the coffee at ${cafe.name}?`}</p>
+        <div className="flex flex-col gap-2">
+          <h2 className="text-center font-semibold">Add Your Rating</h2>
+          <p className="text-balance text-center text-sm text-muted-foreground">{`How is the coffee at ${cafe.name}?`}</p>
+        </div>
         <RateButtons
           selectedRating={selectedRating}
           onSelection={handleSelection}

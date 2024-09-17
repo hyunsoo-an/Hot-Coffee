@@ -14,8 +14,8 @@ export default function LoadingSpinner() {
   }, [navigate])
 
   return (
-    <div className="relative grid h-[70svh] grid-rows-[1fr_auto_1fr] items-center justify-center gap-dy bg-background text-center">
-      <h1 className="self-end">Filtering for Coffees</h1>
+    <div className="relative col-span-full grid h-[70svh] grid-rows-[1fr_auto_1fr] items-center justify-center gap-dy bg-background text-center">
+      <h1 className="self-end">Filtering Coffees</h1>
       {isLoading && (
         <>
           <div className="col-span-full row-start-2 row-end-2 size-44 animate-spin place-self-center rounded-full border-2 border-t-2 border-muted border-t-accent"></div>
