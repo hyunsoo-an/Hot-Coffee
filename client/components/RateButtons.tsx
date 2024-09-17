@@ -3,13 +3,11 @@ import { Button } from './ui/button'
 
 interface RateButtonsProps {
   selectedRating: boolean | null
-  //isWaiting: boolean
   onSelection: (value: boolean) => void
 }
 
 export default function RateButtons({
   selectedRating,
-  //isWaiting,
   onSelection,
 }: RateButtonsProps) {
   const handleSelection = (
@@ -26,7 +24,6 @@ export default function RateButtons({
         className="flex-grow"
         onClick={(event) => handleSelection(event, true)}
         variant={selectedRating === true ? 'default' : 'outline'}
-        //disabled={isWaiting}
       >
         Good
       </Button>
@@ -34,7 +31,6 @@ export default function RateButtons({
         className="flex-grow"
         onClick={(event) => handleSelection(event, false)}
         variant={selectedRating === false ? 'default' : 'outline'}
-        //disabled={isWaiting}
       >
         Bad
       </Button>
