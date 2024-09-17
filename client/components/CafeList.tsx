@@ -4,6 +4,7 @@ import { getDistance } from '../api/distance'
 import { useEffect, useState } from 'react'
 import { Element } from 'models/GoogleDistanceAPIResult'
 import Loading from './Loading'
+import ScrollUp from './ScrollUp'
 
 type UserLocation = {
   latitude: number
@@ -93,6 +94,7 @@ export default function CafeList({
             <CafeListItem key={index} cafe={cafe} />
           ))
         )}
+        <ScrollUp />
       </div>
     </>
   )
