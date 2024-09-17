@@ -28,7 +28,7 @@ export default function CafeList() {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="bg-grey-500 fixed bottom-16 right-1 z-30 rounded-full p-3 text-black"
+          className="fixed bottom-16 right-dx z-30 rounded-full bg-card p-dy text-foreground shadow-lg"
           aria-label="Scroll to top"
         >
           <ChevronsUp />
