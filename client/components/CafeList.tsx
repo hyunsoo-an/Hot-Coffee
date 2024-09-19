@@ -51,7 +51,7 @@ export default function CafeList({
       cafes.map((cafe) => cafe.id).join('-'),
     ],
     queryFn: fetchDistances,
-    staleTime: 1 * 60 * 1000, //1 minute
+    staleTime: 15 * 60 * 1000, //15 minutes
     enabled:
       !!userLocation && userLocation !== 'Location Denied' && cafes.length > 0,
   })
